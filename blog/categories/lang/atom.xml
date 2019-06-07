@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lang | MBA-HACK2]]></title>
+  <link href="https://mbahack2.syui.cf/blog/categories/lang/atom.xml" rel="self"/>
+  <link href="https://mbahack2.syui.cf/"/>
+  <updated>2017-05-24T00:40:01+00:00</updated>
+  <id>https://mbahack2.syui.cf/</id>
+  <author>
+    <name><![CDATA[syui]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[golang-web-scraping]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2015/12/07/golang-web-scraping"/>
+    <updated>2015-12-07T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2015/12/07/golang-web-scraping</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left"><code>goquery</code>を使った時に、少しハマった話。<!--more--><br clear="all"></p>
+
+<p>Web Scrapingをするとき、Golangを使ってみようと思い、いつもと同じように少しハマった話です。Golangで何かやろうとすると割と動かない事多い。</p>
+
+<p>実は、Web Scrapingは、Perlで書いたり、Rubyで書いたりすることがあるんですが、結局のところ、Shell Scriptで書いたやつしか動作しなくなってる事が多いので、どうしようか迷ったんですが、今回も性懲りもなく、一般的な言語を使ってみることに。</p>
+
+<p><a href="https://github.com/PuerkitoBio/goquery">goquery</a>をインストールするのは以下の様なコマンドを叩けばいいです。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ CGO_ENABLED</span><span class="o">=</span>0<span class="p">;</span>gvm install go1.1<span class="p">;</span>gvm use go1.1<span class="p">;</span>go get github.com/PuerkitoBio/goquery
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>解説としては、<a href="https://github.com/moovweb/gvm">gvm</a>を使って、<code>go1.1</code>をインストールして使います。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bash <span class="p">&amp;</span>lt<span class="p">;</span> <span class="p">&amp;</span>lt<span class="p">;</span><span class="o">(</span>curl -s -S -L &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer&quot;</span>&gt;https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer&lt;/a&gt;<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">echo</span> <span class="p">&amp;</span>lsquo<span class="p">;</span><span class="o">[[</span> -s <span class="p">&amp;</span>ldquo<span class="p">;</span><span class="nv">$HOME</span>/.gvm/scripts/gvm<span class="p">&amp;</span>rdquo<span class="p">;</span> <span class="o">]]</span> <span class="p">&amp;</span>amp<span class="p">;&amp;</span>amp<span class="p">;</span> <span class="nb">source</span> <span class="p">&amp;</span>ldquo<span class="p">;</span><span class="nv">$HOME</span>/.gvm/scripts/gvm<span class="p">&amp;</span>rdquo<span class="p">;&amp;</span>rsquo<span class="p">;</span> &gt;&gt; ~/.zshrc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">source</span> ~/.zshrc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;clang: warning: argument unused during compilation: <span class="p">&amp;</span>lsquo<span class="p">;</span>-pthread<span class="p">&amp;</span>rsquo<span class="p">;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ CGO_ENABLED</span><span class="o">=</span>0&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>gvm list
+</span><span class='line'><span class="nv">$ </span>gvm install go1.1
+</span><span class='line'><span class="nv">$ </span>gvm use 1.1
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>以下の様なコードを実行できます。</p>
+
+<p><figure class='code'><figcaption><span>t.go </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>package main&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;import <span class="o">(</span>&lt;br/&gt;
+</span><span class='line'>    <span class="p">&amp;</span>ldquo<span class="p">;</span>fmt<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>    <span class="p">&amp;</span>ldquo<span class="p">;</span>github.com/PuerkitoBio/goquery<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;func main<span class="o">()</span> <span class="o">{</span>&lt;br/&gt;
+</span><span class='line'>    doc, _ :<span class="o">=</span> goquery.NewDocument<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://syui.github.io/&quot;</span>&gt;http://syui.github.io/&lt;/a&gt;<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>
+</span><span class='line'>    doc.Find<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>.post h1 a<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>.Each<span class="o">(</span>func<span class="o">(</span>_ int, s *goquery.Selection<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span> articleUrl, ok :<span class="o">=</span> s.Attr<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>href<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span><span class="p">;</span> ok <span class="o">{</span>
+</span><span class='line'>            fmt.Println<span class="o">(</span>articleUrl<span class="o">)</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">})</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>go run t.go
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>te.go </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>package main&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;import <span class="o">(</span>&lt;br/&gt;
+</span><span class='line'>        <span class="p">&amp;</span>ldquo<span class="p">;</span>fmt<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>        <span class="p">&amp;</span>ldquo<span class="p">;</span>flag<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>        <span class="p">&amp;</span>ldquo<span class="p">;</span>github.com/PuerkitoBio/goquery<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;func main<span class="o">()</span> <span class="o">{</span>&lt;br/&gt;
+</span><span class='line'>    var <span class="o">(</span>
+</span><span class='line'>        stringFlag string
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    flag.StringVar<span class="o">(</span><span class="p">&amp;</span>amp<span class="p">;</span>stringFlag, <span class="p">&amp;</span>ldquo<span class="p">;</span>string<span class="p">&amp;</span>rdquo<span class="p">;</span>, <span class="p">&amp;</span>ldquo<span class="p">;</span>blank<span class="p">&amp;</span>rdquo<span class="p">;</span>, <span class="p">&amp;</span>ldquo<span class="p">;</span>string flag<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>
+</span><span class='line'>    flag.StringVar<span class="o">(</span><span class="p">&amp;</span>amp<span class="p">;</span>stringFlag, <span class="p">&amp;</span>ldquo<span class="p">;</span>s<span class="p">&amp;</span>rdquo<span class="p">;</span>     , <span class="p">&amp;</span>ldquo<span class="p">;</span>blank<span class="p">&amp;</span>rdquo<span class="p">;</span>, <span class="p">&amp;</span>ldquo<span class="p">;</span>string flag<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>
+</span><span class='line'>    flag.Parse<span class="o">()</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;doc, _ :<span class="o">=</span> goquery.NewDocument<span class="o">(</span>stringFlag<span class="o">)</span>
+</span><span class='line'>    doc.Find<span class="o">(</span><span class="s2">&quot;.post h1 a&quot;</span><span class="o">)</span>.Each<span class="o">(</span>func<span class="o">(</span>_ int, s *goquery.Selection<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span> articleUrl, ok :<span class="o">=</span> s.Attr<span class="o">(</span><span class="s2">&quot;href&quot;</span><span class="o">)</span><span class="p">;</span> ok <span class="o">{</span>
+</span><span class='line'>            fmt.Println<span class="o">(</span>articleUrl<span class="o">)</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">})</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;SSLには対応してません&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>go run te.go -s &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://syui.github.io/&quot;</span>&gt;http://syui.github.io/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/22/google-authenticator-yahoo/&quot;</span>&gt;https://syui.github.io/blog/2015/11/22/google-authenticator-yahoo/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/17/comic-walker-screenshot/&quot;</span>&gt;https://syui.github.io/blog/2015/11/17/comic-walker-screenshot/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/13/mmm-make-video-01/&quot;</span>&gt;https://syui.github.io/blog/2015/11/13/mmm-make-video-01/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/12/mmm-mikumikumoving-appearance-miku/&quot;</span>&gt;https://syui.github.io/blog/2015/11/12/mmm-mikumikumoving-appearance-miku/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/07/factory-unlock-sim/&quot;</span>&gt;https://syui.github.io/blog/2015/11/07/factory-unlock-sim/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/11/03/iij-sim-free/&quot;</span>&gt;https://syui.github.io/blog/2015/11/03/iij-sim-free/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/31/amazon-bag-grandstone/&quot;</span>&gt;https://syui.github.io/blog/2015/10/31/amazon-bag-grandstone/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/24/android-mount-exfat-cli/&quot;</span>&gt;https://syui.github.io/blog/2015/10/24/android-mount-exfat-cli/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/23/powershell-openssh-install/&quot;</span>&gt;https://syui.github.io/blog/2015/10/23/powershell-openssh-install/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/22/android-stick-mount-exfat/&quot;</span>&gt;https://syui.github.io/blog/2015/10/22/android-stick-mount-exfat/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/17/archlinux-on-android-am33x-lattest-2/&quot;</span>&gt;https://syui.github.io/blog/2015/10/17/archlinux-on-android-am33x-lattest-2/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/16/archlinux-on-android-am33x-latest/&quot;</span>&gt;https://syui.github.io/blog/2015/10/16/archlinux-on-android-am33x-latest/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/16/archlinux-on-android-6-dot-0-customize/&quot;</span>&gt;https://syui.github.io/blog/2015/10/16/archlinux-on-android-6-dot-0-customize/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/15/archlinux-on-android6/&quot;</span>&gt;https://syui.github.io/blog/2015/10/15/archlinux-on-android6/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/11/android-6-root-nexus7/&quot;</span>&gt;https://syui.github.io/blog/2015/10/11/android-6-root-nexus7/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/10/04/electron-sample-app/&quot;</span>&gt;https://syui.github.io/blog/2015/10/04/electron-sample-app/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/09/29/sudo-pacman-syu/&quot;</span>&gt;https://syui.github.io/blog/2015/09/29/sudo-pacman-syu/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/09/20/mt4-ea-tester/&quot;</span>&gt;https://syui.github.io/blog/2015/09/20/mt4-ea-tester/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/09/19/mt4-ea-origin/&quot;</span>&gt;https://syui.github.io/blog/2015/09/19/mt4-ea-origin/&lt;/a&gt;
+</span><span class='line'>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://syui.github.io/blog/2015/09/19/macbook-items-dock/&quot;</span>&gt;https://syui.github.io/blog/2015/09/19/macbook-items-dock/&lt;/a&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>これでWeb Scrapingの仕組み作っても、バージョン管理使ってる時点で結局のところすぐに動作しなくなりそうな気がする&hellip;。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[comic-walker-screenshot]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2015/11/17/comic-walker-screenshot"/>
+    <updated>2015-11-17T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2015/11/17/comic-walker-screenshot</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">ComicWalkerで読んでいる漫画<!--more--><br clear="all"></p>
+
+<h2>ComicWalkerというサイトが便利だった</h2>
+
+<p>コミックは全巻、Kindleで購入しましたが、最新話がまだ出てないので、<a href="http://comic-walker.com/">ComicWalker</a>で読みました。こういうサイト、便利でいいですね。海外のメディアサービスに比べると、まだまだ日本のそれは非常に遅れている気がしますが、ComicWalkerなどのような一部のサービスはなかなかに便利な感じで(あくまで今までの日本式Webサービスと比較して)、便利な方向へ追従しつつあるので良いと思います。クリエイター、クリエイティブ系の人達は、大体海外のサービスや海外発の開発ツールを使いますので。例えば、動画を発表するならYouTubu、音楽ならSoundCloudなど。また、ゲーム作るならUnityとか。日本製の便利なものが出てくるのは、良いことだと思います。</p>
+
+<p><a href="http://comic-walker.com/contents/detail/KDCW_MF02000001010000_68/">のんのんびより</a></p>
+
+<p>いつも通り。ただ、個人的にはあまり面白くなかった回だったので、アニメに期待。のんのんは、何故か漫画で面白い話がアニメで面白くなかったり、漫画で面白くない話がアニメで面白かったりという逆転現象が発生している気がする。</p>
+
+<p><a href="http://comic-walker.com/contents/detail/KDCW_MF06000004010000_68/">パンでPeace！</a></p>
+
+<p>キャラクターが凄く良かったので、何度も読んでしまった。基本的に全員好きだけど、特に、みなみとふゆみが好きかもしれない。けど、のあも気になるし、ゆうもいい味を出しているので、やはりみんないい。</p>
+
+<p><a href="http://comic-walker.com/contents/detail/KDCW_CW01000015010000_68/">東のくるめと隣のめぐる</a></p>
+
+<p>普通の恋愛ものだけど、それだけに普通に面白い気がする。個人的には主人公と翼さんとの仲をもっと描いて欲しかったなあ。私は翼さん推しなので。最新話辺り、結構展開早かった。</p>
+
+<p>タブレットで読みたいけど、タブレットのブラウザは、クッキー、Javascriptを無効にしているので、Webサイトにアクセスしても手軽に読めないため、手軽に読むためにスクリーンショットしてから転送することに。そのためのスクリプトを書いた。</p>
+
+<p><figure class='code'><figcaption><span>comic-walker-screenshot.sh </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/usr/local/bin/zsh&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;case <span class="nv">$1</span> in
+</span><span class='line'>    <span class="p">&amp;</span>ldquo<span class="p">;&amp;</span>rdquo<span class="p">;</span><span class="o">)</span> <span class="nv">pg</span><span class="o">=</span><span class="m">16</span>   <span class="p">;;</span>
+</span><span class='line'>    *<span class="o">)</span>  <span class="nv">pg</span><span class="o">=</span><span class="nv">$1</span>   <span class="p">;;</span>
+</span><span class='line'><span class="k">esac</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;tl<span class="o">=</span>&lt;code&gt;osascript -e <span class="s1">&#39;tell application &quot;Google Chrome&quot; to get NAME of active tab of first window&#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f -1&lt;/code&gt;
+</span><span class='line'><span class="nv">ul</span><span class="o">=</span>&lt;code&gt;osascript -e <span class="s1">&#39;tell application &quot;Google Chrome&quot; to get URL of active tab of first window&#39;</span>&lt;/code&gt;
+</span><span class='line'><span class="nv">ul</span><span class="o">=</span>&lt;code&gt;echo <span class="k">${</span><span class="nv">ul</span><span class="p">:</span><span class="nv">t</span><span class="k">}</span> <span class="p">|</span> cut -d <span class="o">=</span> -f 4-&lt;/code&gt;
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$ul</span>
+</span><span class='line'><span class="nv">fn</span><span class="o">=</span><span class="k">${</span><span class="nv">tl</span><span class="k">}</span>_<span class="k">${</span><span class="nv">ul</span><span class="k">}</span>
+</span><span class='line'><span class="nv">hd</span><span class="o">=</span>~/Downloads/comicwalker
+</span><span class='line'><span class="nv">td</span><span class="o">=</span><span class="nv">$hd</span>/<span class="nv">$ul</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;mkdir -p <span class="nv">$td</span>
+</span><span class='line'><span class="nb">cd</span> <span class="nv">$hd</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;chrome window size&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ssize<span class="o">=</span>&lt;code&gt;osascript -e <span class="s1">&#39;tell application &quot;System Events&quot; to get properties of first window of application process &quot;Google Chrome&quot;&#39;</span> <span class="p">|</span> tr <span class="s2">&quot;:&quot;</span> <span class="s2">&quot;\n&quot;</span> <span class="p">|</span> grep -A <span class="m">1</span> -e position -e size <span class="p">|</span> awk <span class="s2">&quot;NR==2&quot;</span>&lt;/code&gt;
+</span><span class='line'><span class="nv">swidth</span><span class="o">=</span>&lt;code&gt;echo <span class="nv">$ssize</span> <span class="p">|</span> cut -d , -f 1&lt;/code&gt;
+</span><span class='line'><span class="nv">shigh</span><span class="o">=</span><span class="k">$(</span>expr &lt;code&gt;echo <span class="nv">$ssize</span> <span class="p">|</span> cut -d , -f 2&lt;/code&gt; + 100<span class="k">)</span>
+</span><span class='line'><span class="nv">wsize</span><span class="o">=</span>&lt;code&gt;osascript -e <span class="s1">&#39;tell application &quot;System Events&quot; to get properties of first window of application process &quot;Google Chrome&quot;&#39;</span> <span class="p">|</span> tr <span class="s2">&quot;:&quot;</span> <span class="s2">&quot;\n&quot;</span> <span class="p">|</span> grep -A <span class="m">1</span> -e position -e size <span class="p">|</span> awk <span class="s2">&quot;NR==5&quot;</span>&lt;/code&gt;
+</span><span class='line'><span class="nv">wwidth</span><span class="o">=</span>&lt;code&gt;echo <span class="nv">$wsize</span> <span class="p">|</span> cut -d , -f 1&lt;/code&gt;
+</span><span class='line'><span class="nv">whigh</span><span class="o">=</span>&lt;code&gt;echo <span class="nv">$wsize</span> <span class="p">|</span> cut -d , -f 2&lt;/code&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;w-high<span class="o">=</span><span class="k">$(</span>expr &lt;code&gt;echo <span class="nv">$w</span>-size <span class="p">|</span> cut -d , -f 2&lt;/code&gt; - 100<span class="k">)</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;for <span class="o">((</span><span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i<span class="p">&amp;</span>lt<span class="p">;</span><span class="o">=</span><span class="k">${</span><span class="nv">pg</span><span class="k">}</span><span class="p">;</span>i++ <span class="o">))</span>
+</span><span class='line'><span class="k">do</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;osascript -e <span class="p">&amp;</span>lsquo<span class="p">;</span>tell application <span class="p">&amp;</span>ldquo<span class="p">;</span>Google Chrome<span class="p">&amp;</span>rdquo<span class="p">;</span> to activate<span class="p">&amp;</span>rsquo<span class="p">;</span>&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;if <span class="o">[</span> <span class="nv">$i</span> -le <span class="m">9</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="p">&amp;</span>ldquo<span class="p">;</span>screencapture -R<span class="k">${</span><span class="nv">swidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">shigh</span><span class="k">}</span>,<span class="k">${</span><span class="nv">wwidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">whigh</span><span class="k">}</span> <span class="nv">$td</span>/0<span class="k">${</span><span class="nv">i</span><span class="k">}</span>.png<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>    screencapture -R<span class="k">${</span><span class="nv">swidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">shigh</span><span class="k">}</span>,<span class="k">${</span><span class="nv">wwidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">whigh</span><span class="k">}</span> <span class="nv">$td</span>/0<span class="k">${</span><span class="nv">i</span><span class="k">}</span>.png
+</span><span class='line'>    <span class="c">#screencapture -R2602,-189,670,980 $td/0${i}.png</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>    <span class="nb">echo</span> <span class="p">&amp;</span>ldquo<span class="p">;</span>screencapture -R<span class="k">${</span><span class="nv">swidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">shigh</span><span class="k">}</span>,<span class="k">${</span><span class="nv">wwidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">whigh</span><span class="k">}</span> <span class="nv">$td</span>/<span class="k">${</span><span class="nv">i</span><span class="k">}</span>.png<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>    screencapture -R<span class="k">${</span><span class="nv">swidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">shigh</span><span class="k">}</span>,<span class="k">${</span><span class="nv">wwidth</span><span class="k">}</span>,<span class="k">${</span><span class="nv">whigh</span><span class="k">}</span> <span class="nv">$td</span>/<span class="k">${</span><span class="nv">i</span><span class="k">}</span>.png
+</span><span class='line'><span class="k">fi</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;osascript <span class="p">&amp;</span>lt<span class="p">;&amp;</span>lt<span class="p">;</span> EOF &gt; /dev/null 2&gt;<span class="p">&amp;</span>amp<span class="p">;</span>1
+</span><span class='line'>tell application <span class="p">&amp;</span>ldquo<span class="p">;</span>Google Chrome<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>    activate
+</span><span class='line'>    tell application <span class="p">&amp;</span>ldquo<span class="p">;</span>System Events<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>        delay 0.3
+</span><span class='line'>        key code 123
+</span><span class='line'>        tell application <span class="p">&amp;</span>ldquo<span class="p">;</span>iTerm<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>            activate
+</span><span class='line'>        end tell
+</span><span class='line'>    end tell
+</span><span class='line'>end tell
+</span><span class='line'>EOF&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sleep 1
+</span><span class='line'><span class="k">done</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;apack <span class="k">${</span><span class="nv">fn</span><span class="k">}</span>.zip <span class="nv">$ul</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[electron-sample-app]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2015/10/04/electron-sample-app"/>
+    <updated>2015-10-04T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2015/10/04/electron-sample-app</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">ElectronでGUIアプリ開発<!--more--><br clear="all"></p>
+
+<h2>ElectronでHello Worldするまで</h2>
+
+<p>Electronは、Javascript, HTML, CSSなどでGUIアプリを開発する補助を行う感じのツールで、テンプレートやクロスコンパイルを用意してくれるので、各種OSのGUIアプリを開発するのがすごく楽な感じです。あくまで使ってみた印象ですが。</p>
+
+<p>調べてみると、クロスプラットフォームデスクトップアプリケーションエンジンというらしいです。なるほど、わからん。</p>
+
+<p>今回は、ElectronのHello Worldするまでと、サンプルアプリをクロスコンパイルされたパッケージを使って配布するまでをやってみたいと思います。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install node&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm -g install electron-prebuilt&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>mkdir electron-hello<span class="p">;</span> <span class="nb">cd </span>electron-hello&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm init -y
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><code>package.json</code>は最初に読み込むファイルを指定します。</p>
+
+<p><figure class='code'><figcaption><span>electron-hello/package.json </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="p">&amp;</span>ldquo<span class="p">;</span>name<span class="p">&amp;</span>rdquo<span class="p">;</span>: <span class="p">&amp;</span>ldquo<span class="p">;</span>electron-hello<span class="p">&amp;</span>rdquo<span class="p">;</span>,
+</span><span class='line'>  <span class="p">&amp;</span>ldquo<span class="p">;</span>version<span class="p">&amp;</span>rdquo<span class="p">;</span>: <span class="p">&amp;</span>ldquo<span class="p">;</span>0.0.1<span class="p">&amp;</span>rdquo<span class="p">;</span>,
+</span><span class='line'>  <span class="p">&amp;</span>ldquo<span class="p">;</span>main<span class="p">&amp;</span>rdquo<span class="p">;</span>: <span class="p">&amp;</span>ldquo<span class="p">;</span>main.js<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>次に、<code>main.js</code>を読み込むよう指定したので、そこに基本的な処理を書いていきます。</p>
+
+<p><figure class='code'><figcaption><span>electron-hello/main.js </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>var <span class="nv">app</span> <span class="o">=</span> require<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>app<span class="p">&amp;</span>rsquo<span class="p">;</span><span class="o">)</span><span class="p">;</span>  // アプリケーション作成用モジュールをロード
+</span><span class='line'>var <span class="nv">BrowserWindow</span> <span class="o">=</span> require<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>browser-window<span class="p">&amp;</span>rsquo<span class="p">;</span><span class="o">)</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;//  クラッシュレポート
+</span><span class='line'>require<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>crash-reporter<span class="p">&amp;</span>rsquo<span class="p">;</span><span class="o">)</span>.start<span class="o">()</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;var <span class="nv">mainWindow</span> <span class="o">=</span> null<span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// 全てのウィンドウが閉じたらアプリケーションを終了します。
+</span><span class='line'>app.on<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>window-all-closed<span class="p">&amp;</span>rsquo<span class="p">;</span>, <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    app.quit<span class="o">()</span><span class="p">;</span>
+</span><span class='line'><span class="o">})</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// アプリケーションの初期化が完了したら呼び出されます。
+</span><span class='line'>app.on<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>ready<span class="p">&amp;</span>rsquo<span class="p">;</span>, <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  // メインウィンドウを作成します。
+</span><span class='line'>  <span class="nv">mainWindow</span> <span class="o">=</span> new BrowserWindow<span class="o">({</span>width: 600, height: 400<span class="o">})</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // メインウィンドウに表示するURLを指定します。
+</span><span class='line'>  mainWindow.loadUrl<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>file://<span class="p">&amp;</span>rsquo<span class="p">;</span> + __dirname + <span class="p">&amp;</span>lsquo<span class="p">;</span>/index.html<span class="p">&amp;</span>rsquo<span class="p">;</span><span class="o">)</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;  // メインウィンドウが閉じられたときの処理
+</span><span class='line'>  mainWindow.on<span class="o">(</span><span class="p">&amp;</span>lsquo<span class="p">;</span>closed<span class="p">&amp;</span>rsquo<span class="p">;</span>, <span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nv">mainWindow</span> <span class="o">=</span> null<span class="p">;</span>
+</span><span class='line'>  <span class="o">})</span><span class="p">;</span>
+</span><span class='line'><span class="o">})</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>ここで、メインウィンドウに<code>index.html</code>を読み込んでいるので、それを作成していきます。</p>
+
+<p><figure class='code'><figcaption><span>electron-hello/index.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="p">&amp;</span>lt<span class="p">;</span>!DOCTYPE html&gt;
+</span><span class='line'>&lt;html&gt;
+</span><span class='line'>&lt;head&gt;
+</span><span class='line'>&lt;meta <span class="nv">charset</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>&gt;
+</span><span class='line'>&lt;title&gt;Electron Read Us&lt;/title&gt;
+</span><span class='line'>&lt;/head&gt;
+</span><span class='line'>&lt;body&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Hello, electron!&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;&lt;/body&gt;
+</span><span class='line'>&lt;/html&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>ディレクトリ構造は以下の様な感じ。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.
+</span><span class='line'>├── main.js
+</span><span class='line'>├─index.html
+</span><span class='line'>└── package.json
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>そこで、<code>electron .</code>を実行すると、アプリというか、<code>electron</code>でパッケージが実行されます。</p>
+
+<p>この場合、<code>electron</code>をインストールしているパソコンでは、これで使えますが、そうでない場合は起動しません。</p>
+
+<p>したがって、Electronは、Electronを実行するための各種環境でコンパイルされたパッケージ群をダウンロードして、そこにElectron用にアーカイブ化したファイルを所定の場所に配置することで、アプリとして配布可能にします。クロスコンパイル(正確には違うけど)は、Golangよりも面倒なので、誰か、この処理を簡単にするスクリプト作ってないかな&hellip;。</p>
+
+<h3>Electron用にアーカイブ化するコマンド</h3>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>npm install -g asar&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>asar pack app.asar
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>各種環境でコンパイルされたパッケージのダウンロード</h3>
+
+<p><a href="https://github.com/atom/electron/releases">https://github.com/atom/electron/releases</a></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cp app.asar ~/Downloads/electron-v0.33.4-darwin-x64/Electron.app/Contents/Resources/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;これで起動するはずです&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>open ~/Downloads/electron-v0.33.4-darwin-x64/Electron.app
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>Darwin(Mac)の場合</h3>
+
+<p>Darwin(Mac)の場合は、解凍したフォルダ内の<code>Electron.app/Contents/Resources/</code>に置きます。</p>
+
+<h3>Linux(Linux)とWin32(Windows)の場合</h3>
+
+<p>解凍したフォルダの<code>resources/</code>に置きます。</p>
+
+<h2>Electronでサンプルアプリ</h2>
+
+<p>既存のTodoアプリでコード・リーディングしてみます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/k-yamada/todos&quot;</span>&gt;https://github.com/k-yamada/todos&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>todos&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>electron .
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Windowsで実行してみました。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/electron-todos.png" alt="" /></p>
+
+<p>参考:</p>
+
+<p><a href="http://ics-web.jp/lab/archives/7298">http://ics-web.jp/lab/archives/7298</a></p>
+
+<p><a href="http://www.sonix.asia/rd-reports/electron1">http://www.sonix.asia/rd-reports/electron1</a></p>
+
+<p><a href="http://qiita.com/Quramy/items/a4be32769366cfe55778">http://qiita.com/Quramy/items/a4be32769366cfe55778</a></p>
+
+<p>今後の方向性としては、<code>React.js</code>, <code>Angular</code>, <code>Mithril</code>のうちどれか一つと、 <code>Sass</code>, <code>Slim</code>, <code>Bootstrap</code>, <code>Font-Awesome</code>などで外観を整えながら、<code>Grunt</code>, <code>Bower</code>などで補助しながら使っていきたい感じがします。</p>
+
+<p><a href="https://github.com/sindresorhus/awesome-electron">https://github.com/sindresorhus/awesome-electron</a></p>
+]]></content>
+  </entry>
+  
+</feed>

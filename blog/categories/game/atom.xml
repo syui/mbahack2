@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: game | MBA-HACK2]]></title>
+  <link href="https://mbahack2.syui.cf/blog/categories/game/atom.xml" rel="self"/>
+  <link href="https://mbahack2.syui.cf/"/>
+  <updated>2017-05-24T00:40:01+00:00</updated>
+  <id>https://mbahack2.syui.cf/</id>
+  <author>
+    <name><![CDATA[syui]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[spritestudio-sample]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/25/spritestudio-sample"/>
+    <updated>2016-05-25T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/25/spritestudio-sample</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">SpriteStudioの基本的な使い方<!--more--><br clear="all"></p>
+
+<p>まず、<a href="http://www.webtech.co.jp/help/ja/spritestudio/download/fordesigner/">こちら</a>にサンプルが用意されていると思います。それを読み込んで動作を確認してみても良いし、イチから作ってみても良いです。</p>
+
+<p>私の場合、イラストから作成し、アニメーションを付けてみました。</p>
+
+<p>使い方は、画像ファイルを読み込んで、一つ一つのパーツに時間軸のアニメーションを付けていきます。この際、<a href="https://github.com/SpriteStudio/PSDtoSS">プラグイン</a>を使っても構いません。</p>
+
+<p>アニメーションの付け方ですが、パーツをダブルクリックすると重心を設定できます。重心は基本的に胸や腰の方向に向けて設定すると良いでしょう。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_spritestudio_sample_04.png" alt="" /></p>
+
+<p>また、アニメーションを付ける際には、ツールバーの下記にマーク(的?のマーク)されたものを使うと設定しやすいです。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_spritestudio_sample_03.png" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[spritestudio-droid]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/24/spritestudio-undroid"/>
+    <updated>2016-05-24T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/24/spritestudio-undroid</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">SpriteStudioでドロイドくんを動かしてみました。<!--more--><br clear="all"></p>
+
+<p><a href="http://www.webtech.co.jp/spritestudio/">SpriteStudio</a>は、2D画像をアニメーションするためのアプリで、UnityやUE4とも連携でき、そのためのプラグインがいくつか用意されています。</p>
+
+<p><a href="https://github.com/SpriteStudio">https://github.com/SpriteStudio</a></p>
+
+<p>(&hellip;ところで、なぜOrgではなくUserなのだろうか)</p>
+
+<p>補助ツールなども豊富で、分かりやすく説明されているためすぐに使えました。</p>
+
+<p><a href="http://www.webtech.co.jp/help/ja/spritestudio/download/fordesigner/">http://www.webtech.co.jp/help/ja/spritestudio/download/fordesigner/</a></p>
+
+<h2>GIMPからPSDを作成し、それをSpriteStudioで読み込む</h2>
+
+<p>以下のツールを使います。これにより<code>.psd</code>から<code>.ssce(ssae,sspj)</code>ができます。</p>
+
+<p>(正確には、<code>.psd</code>からレイヤーごとの<code>.png</code>が作られ、その構成を記した<code>.txt</code>から<code>.ssce</code>などが作成されます)</p>
+
+<p><a href="https://github.com/SpriteStudio/PSDtoSS/wiki">https://github.com/SpriteStudio/PSDtoSS/wiki</a></p>
+
+<h2>SpriteStudioで.ssceを読み込む</h2>
+
+<p>先ほど作成した<code>.ssce</code>を開きます。当該アプリと拡張子が関連付けされていると思います。</p>
+
+<p>しかし、Mac(Free版)ではアプリを開いた後に再度読み込まないと、できたりできなかったりでした。</p>
+
+<p>また、当該環境下では、GIMPプラグインである<code>GIMPWin_PSDtoSS_PNGExport.py</code>で作成し、<code>PSDtoSS for Mac</code>で作成した<code>.ssce</code>は「セルマップ画像とパーツ毎のX,Y座標、縦横サイズを含む.SSCEファイルとパーツのレイアウト情報」を正確には含んでいませんでした。したがって、「セルマップの登録とパーツの配置まで自動で行」われませんでしたので、手動で配置しました。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_spritestudio_undroid.png" alt="" /></p>
+
+<h2>アニメーションの振り付け</h2>
+
+<p>自動(私の場合は手動)でパーツの配置を完了した後は、アニメーションをつけていきます。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_spritestudio_undroid.gif" alt="" /></p>
+
+<p>ヒント : 手の重心を下のほうに変更すれば、もう少しスムーズに手をふることが出来ます!</p>
+
+<h2>Live2DとSpriteStudio</h2>
+
+<p>まず、SpriteStudioは<a href="http://www.live2d.com/ja/">Live2D</a>より遥かに使いやすい印象でした。ただし、Live2Dは完全無料版があるのに対し、SpriteStudioは基本有料です。</p>
+
+<p>しかし、Live2D(Free)は制限がきつくて実際はあまり使いものにならないような気がします。</p>
+
+<p>次に、Live2Dが使えない理由は他にもあります。</p>
+
+<p>具体的には、<code>QuickTime</code>と<code>Java</code>に依存しているからです。Windowsの場合もMacの場合も、これは最悪です</p>
+
+<p>Macの場合は<code>Java SE6</code>をインストールしなければいけません。Windowsは脆弱な<code>QuickTime</code>が必要になるため使いたくありません。</p>
+
+<p>さらに、Live2DはViewerなどにAdobe Airが必要だったりと、技術者が使うにはとても抵抗があるアプリです。</p>
+
+<p>なので、2Dを作るならSpriteStudioのほうが良いと私は思いました。これは、使いやすさや依存関係などを見て総合的に判断しています。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mac-imovie]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/22/mac-imovie"/>
+    <updated>2016-05-22T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/22/mac-imovie</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">動画編集アプリは、Mac標準アプリのiMovieが最高でした。<!--more--><br clear="all"></p>
+
+<p>今まで動画編集アプリは何がいいのか迷っていました。この前もLinuxの<code>SimpleScreenRecorder</code>で撮影した動画を編集しようとしたのですが、Linuxのアプリはどれも同じく安定しませんでした。</p>
+
+<p>したがって、Macの<code>iMovie</code>を使ってみたのですが、これが思いのほか出来栄えが良かったです。</p>
+
+<p>最初こそ使い方が分かりませんでしたが、以下のポイントを抑えると、シーンの切り取りくらいはできるようになりました。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/mac-imovie-select.png" alt="" /></p>
+
+<ul>
+<li><p>iMovieで編集するにはプロジェクトに追加する必要があります(ツールバーのプロジェクトとなっている所から追加できます)</p></li>
+<li><p>画面の切り取りは右のチェックを実行しなければなりません</p></li>
+<li><p>シーンの切り取りはRを押しながら選択します</p></li>
+<li><p>保存は画面右上のボタンから</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ue4-mmd-miku-motion]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/21/ue4-mmd-miku-motion"/>
+    <updated>2016-05-21T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/21/ue4-mmd-miku-motion</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">UE4でMMDモデルを動かします。<!--more--><br clear="all"></p>
+
+<p><a href="https://syui.github.io/blog/2016/05/19/ue4-mmd-miku/">前回</a>と同様、モデルは初音ミクを使用します。</p>
+
+<p>プロジェクトを作成する画面で階段とかがあるマップ選択すると、サンプルキャラクターとモーションがついてきます。今回はそれを利用してモデルに動きをつけます。</p>
+
+<p>まず、サンプルキャラのスケルトン、<code>Mannequin/Character/Mesh/UE4_Mannequin_Skeleton</code>を編集します。</p>
+
+<p>そこでリターゲットマネージャーを起動し、<code>リグを選択</code>にて<code>Humanoid</code>を指定します。すると、自動で各ボーンが割り当てられます。最後にポーズを保存します。</p>
+
+<p>次に、Mikuのスケルトンを編集します。先ほどと同じようにリターゲットマネージャーを起動し、リグを選択にて<code>Humanoid</code>を指定します。そして、各ボーンを手動で割り当てます。これが非常に面倒です。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_motion_02.png" alt="" /></p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_motion_03.png" alt="" /></p>
+
+<table>
+<thead>
+<tr>
+<th>部位</th>
+<th>ue4標準ボーン</th>
+<th>MMD標準ボーン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頭</td>
+<td>head</td>
+<td>頭</td>
+</tr>
+<tr>
+<td>首</td>
+<td>neck_01</td>
+<td>首</td>
+</tr>
+<tr>
+<td>肩（左）</td>
+<td>clavicle_l</td>
+<td>左肩</td>
+</tr>
+<tr>
+<td>肩（右）</td>
+<td>clavicle_r</td>
+<td>右肩|</td>
+</tr>
+<tr>
+<td>上腕（左）</td>
+<td>upperarm_l</td>
+<td>左腕</td>
+</tr>
+<tr>
+<td>上腕（右）</td>
+<td>upperarm_r</td>
+<td>右腕</td>
+</tr>
+<tr>
+<td>前腕（左）</td>
+<td>lowerarm_l</td>
+<td>左ひじ</td>
+</tr>
+<tr>
+<td>前腕（右）</td>
+<td>lowerarm_r</td>
+<td>右ひじ</td>
+</tr>
+<tr>
+<td>手首（左）</td>
+<td>hand_l</td>
+<td>左手首</td>
+</tr>
+<tr>
+<td>手首（右）</td>
+<td>hand_r</td>
+<td>右手首</td>
+</tr>
+<tr>
+<td>背中1</td>
+<td>spline_01</td>
+<td>下半身</td>
+</tr>
+<tr>
+<td>背中2</td>
+<td>spline_02</td>
+<td>上半身１</td>
+</tr>
+<tr>
+<td>背中3</td>
+<td>spline_03</td>
+<td>上半身２</td>
+</tr>
+<tr>
+<td>腰</td>
+<td>pelvis</td>
+<td>腰</td>
+</tr>
+<tr>
+<td>大腿（左）</td>
+<td>thigh_l</td>
+<td>左足</td>
+</tr>
+<tr>
+<td>大腿（右）</td>
+<td>thigh_r</td>
+<td>右足</td>
+</tr>
+<tr>
+<td>下腿（左）</td>
+<td>calf_l</td>
+<td>左ひざ</td>
+</tr>
+<tr>
+<td>下腿（右）</td>
+<td>calf_r</td>
+<td>右ひざ</td>
+</tr>
+<tr>
+<td>足首（左）</td>
+<td>foot_l</td>
+<td>左足首</td>
+</tr>
+<tr>
+<td>足首（右）</td>
+<td>foot_r</td>
+<td>右足首</td>
+</tr>
+<tr>
+<td>親指（左1）</td>
+<td>thumb_01_l</td>
+<td>左親指０</td>
+</tr>
+<tr>
+<td>親指（左2）</td>
+<td>thumb_02_l</td>
+<td>左親指１</td>
+</tr>
+<tr>
+<td>親指（左3）</td>
+<td>thumb_03_l</td>
+<td>左親指２</td>
+</tr>
+<tr>
+<td>親指（右1）</td>
+<td>thumb_01_r</td>
+<td>右親指０</td>
+</tr>
+<tr>
+<td>親指（右2）</td>
+<td>thumb_02_r</td>
+<td>右親指１</td>
+</tr>
+<tr>
+<td>親指（右3）</td>
+<td>thumb_03_r</td>
+<td>右親指２</td>
+</tr>
+<tr>
+<td>人差し指（左1）</td>
+<td>index_01_l</td>
+<td>左人差１</td>
+</tr>
+<tr>
+<td>人差し指（左2）</td>
+<td>index_02_l</td>
+<td>左人差２</td>
+</tr>
+<tr>
+<td>人差し指（左3）</td>
+<td>index_03_l</td>
+<td>左人差３</td>
+</tr>
+<tr>
+<td>人差し指（右1）</td>
+<td>index_01_r</td>
+<td>右人差１</td>
+</tr>
+<tr>
+<td>人差し指（右2）</td>
+<td>index_02_r</td>
+<td>右人差２</td>
+</tr>
+<tr>
+<td>人差し指（右3）</td>
+<td>index_03_r</td>
+<td>右人差３</td>
+</tr>
+<tr>
+<td>中指（左1）</td>
+<td>middle_01_l</td>
+<td>左中指１</td>
+</tr>
+<tr>
+<td>中指（左2）</td>
+<td>middle_02_l</td>
+<td>左中指２</td>
+</tr>
+<tr>
+<td>中指（左3）</td>
+<td>middle_03_l</td>
+<td>左中指３</td>
+</tr>
+<tr>
+<td>中指（右1）</td>
+<td>middle_01_r</td>
+<td>右中指１</td>
+</tr>
+<tr>
+<td>中指（右2）</td>
+<td>middle_02_r</td>
+<td>右中指２</td>
+</tr>
+<tr>
+<td>中指（右3）</td>
+<td>middle_03_r</td>
+<td>右中指３</td>
+</tr>
+<tr>
+<td>薬指（左1）</td>
+<td>ring_01_l</td>
+<td>左薬指１</td>
+</tr>
+<tr>
+<td>薬指（左2）</td>
+<td>ring_02_l</td>
+<td>左薬指２</td>
+</tr>
+<tr>
+<td>薬指（左3）</td>
+<td>ring_03_l</td>
+<td>左薬指３</td>
+</tr>
+<tr>
+<td>薬指（右1）</td>
+<td>ring_01_r</td>
+<td>右薬指１</td>
+</tr>
+<tr>
+<td>薬指（右2）</td>
+<td>ring_02_r</td>
+<td>右薬指２</td>
+</tr>
+<tr>
+<td>薬指（右3）</td>
+<td>ring_03_r</td>
+<td>右薬指３</td>
+</tr>
+<tr>
+<td>小指（左1）</td>
+<td>pinky_01_l</td>
+<td>左小指１</td>
+</tr>
+<tr>
+<td>小指（左2）</td>
+<td>pinky_02_l</td>
+<td>左小指２</td>
+</tr>
+<tr>
+<td>小指（左3）</td>
+<td>pinky_03_l</td>
+<td>左小指３</td>
+</tr>
+<tr>
+<td>小指（右1）</td>
+<td>pinky_01_r</td>
+<td>右小指１</td>
+</tr>
+<tr>
+<td>小指（右2）</td>
+<td>pinky_02_r</td>
+<td>右小指２</td>
+</tr>
+<tr>
+<td>小指（右3）</td>
+<td>pinky_03_r</td>
+<td>右小指３</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>参考:</p>
+
+<p><a href="http://qiita.com/housakusleeping/items/fa1300a9f4aa1a3db58a">http://qiita.com/housakusleeping/items/fa1300a9f4aa1a3db58a</a></p>
+
+<p>これでアニメーションを動かせるようになったと思います。もし試したいなら<code>Mannequin/Animations</code>にて好きなアニメーションを選択し、右クリックにて<code>Animアセットをリターゲットする</code>を選択します。ここでMikuモデルを選択すれば再生されると思います。</p>
+
+<p>再生すると分かりますが、<code>肩</code>と<code>足</code>の曲がり具合がサンプルモデルとMMDモデルでは異なっているため調整が必要です。しかし、今回は省略します。調整したい方は、サンプルモデルの各ボーンをできるだけまっすぐにすると良いでしょう。</p>
+
+<p>最後に、初音ミクモデルを自由にコントロールする方法です。</p>
+
+<p>これは、<code>ThirdPersonBP/Blueprints/ThirdPersonCharacter</code>の<code>Mesh</code>を初音ミクのものにし、かつAnimationのClassを<code>ThirdPerson_AnimeBP...</code>に指定することで設定できます。</p>
+
+<p>あとは、プレイするとキーボードで初音ミクを操作できます。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_motion_01.png" alt="" /></p>
+
+<p>ボーンの指定や調整などが非常に面倒でした。Unityの場合、この辺りはプラグインでほぼ全部やってくれたような記憶があります。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ue4-mmd-miku]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/19/ue4-mmd-miku"/>
+    <updated>2016-05-19T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/19/ue4-mmd-miku</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">UE4を使ってMMDの初音ミクを表示してみました。<!--more--><br clear="all"></p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_04.png" alt="" /></p>
+
+<p><a href="https://www.unrealengine.com/">UE4</a>というゲームエンジンがあります。ゲームエンジンというのは開発キットのようなイメージのものです。<a href="http://japan.unity3d.com/">Unity</a>と並び有名です。</p>
+
+<p>しかし、このようなゲームエンジンは、MMDモデルを直接読み込めるわけではありません。モデルを読み込むには、プラグインを使ったり、変換したりする必要があります。</p>
+
+<h2>プラグインを使ったMMDの読み込み</h2>
+
+<p>まず、プラグインを使った方法を紹介します。しかし、バイナリがWindowsのものしか配布されておらず、ソースも公開されていないため、Macでは使えませんでした。</p>
+
+<p>なぜソースが公開されていないかというと、処理中にUE4本体のコードを含むらしいからとのこと。</p>
+
+<p><a href="https://github.com/bm9/IM4U">https://github.com/bm9/IM4U</a></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/bm9/IM4U&quot;</span>&gt;https://github.com/bm9/IM4U&lt;/a&gt;
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>IM4U
+</span><span class='line'><span class="nv">$ </span>git checkout 4.11.X
+</span><span class='line'><span class="nv">$ </span>cp -rf Plugins ~/Documents/Unreal<span class="se">\ </span>Projects/MyProject/
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>この場合、マテリアルに適切なテクスチャが設定されるため煩わしさは軽減されると思われます。使ってないので分かりませんが。</p>
+
+<h2>PMXからFBXに変換してMMDを読み込む</h2>
+
+<p>プラグインを使わない場合はこちらの方法になります。</p>
+
+<p><a href="http://stereoarts.jp/">MMD4Mecanim</a>というものがあります。これを使って変換を行います。</p>
+
+<p>モデルは、<a href="http://piapro.jp/t/KPU3">Appearance Miku</a>を使います。<code>pmx2fbx.exe</code>があるところで変換したい<code>.pmx</code>を置いて実行します。実行は、<code>cmd</code>上で行います。Windowsです。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;pmx2fbx.exe Appearance_Miku.pmx
+</span></code></pre></td></tr></table></div></figure></p></blockquote>
+
+<p>変換が終わると、<code>Appearance_Miku.fbx</code>ができますが、これをUE4にインポートします。</p>
+
+<p>普通にファイルをドラッグアンドドロップすればいけます。</p>
+
+<p>その前に展開先のフォルダを作っておくと便利です。</p>
+
+<h2>マテリアルが上手く設定されない問題</h2>
+
+<p>インポートしてもそのままではマテリアルに色がついていません。</p>
+
+<p>したがって、私の場合、手動で各マテリアル(1肌, 2髪など)にテクスチャを設定しました。この作業は非常に面倒でした。必要な情報は、変換した際にできた<code>.xml</code>を見ます。</p>
+
+<p>まず、モデルを解凍したディレクトリにあるテクスチャ(PNGファイルなど)をUE4にインポートします。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_02.png" alt="" /></p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_01.png" alt="" /></p>
+
+<p>そして、各マテリアルをダブルクリックで開き、エディタが起動すると思いますが、そこで先ほどインポートしたテクスチャ(PNG画像ファイル)をドラッグアンドドロップし、ベースカラーへのリンクを貼ります。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_03.png" alt="" /></p>
+
+<p>これで、モデルがある程度はちゃんと表示されると思います。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/game_ue4_mmd_miku_05.png" alt="" /></p>
+
+<p>ちなみに、マテリアルを変更した際、ビルドには多少時間がかかりますので、その間、マテリアルが反映されないことがあります。気長に待ちましょう。</p>
+
+<h2>UE4とUnity</h2>
+
+<p>正直、Macでは、UE4はかなり使いづらかった印象です。Unityと比べて。</p>
+
+<p>理由はいくつかありますが、一番はビルドに時間がかかりすぎることです。</p>
+
+<p>この点、Unityの時はあまり待たされることがなかった気がします。UE4よりは割りとサクサク動いていました。</p>
+
+<p>また、UE4は無料になって間もない事から日本語ドキュメントやWeb情報がUnityよりも圧倒的に少ないです。</p>
+
+<p>ただ、Unityよりも良い部分はあります。</p>
+
+<p>一つにゲームとしての見た目はUE4のほうが良いように感じました。更に、標準モデル(サンプルモデル)の動きも軽快に感じました。</p>
+
+<p>つまり、本格的にゲームを作るならUE4のほうが良いのかもしれないとそう感じる部分が多々ありました。</p>
+
+<p>しかし、私のMacBook Air 11-inchでは荷が重すぎたのか、あまり快適に作業はできませんでした。</p>
+
+<p>これは、OSがMacであることも関係していると思います。多分、Windowsならもう少し快適だったと思います。</p>
+]]></content>
+  </entry>
+  
+</feed>

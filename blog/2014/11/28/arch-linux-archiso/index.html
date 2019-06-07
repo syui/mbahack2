@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Arch Linux GUI - MBA-HACK2</title>
+  <meta name="author" content="syui">
+
+  
+  
+<meta name="google-site-verification" content="JkNswpm6rjgiXwpuzePnVWNEHTHNpZxsUdsoavMAcfU" />
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://mbahack2.syui.cf/blog/2014/11/28/arch-linux-archiso" />
+  <link rel="canonical" href="https://mbahack2.syui.cf/blog/2014/11/28/arch-linux-archiso">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="MBA-HACK2" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link rel="apple-touch-icon" href="/images/favicon.png" />
+<link href="/favicon.ico" rel="icon">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+
+    <script src="/bower_components/jquery/dist/jquery-2.2.0.min.js "></script>
+<link href="/stylesheets/data-table.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/javascripts/jquery.githubRepoWidget.min.js"></script>
+
+  <script type="text/javascript">
+    var enforce = "mbahack2.syui.cf";
+    if ((enforce == window.location.host) && (window.location.protocol != "https:"))
+      window.location = window.location.toString().replace(/^http:/, "https:");
+  </script>
+
+
+<script>
+  $.noConflict()
+</script>
+
+  <link rel="stylesheet" href="/octicons/octicons.css">
+  <link rel="stylesheet" href="/fonts/icomoon.css">
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "https://mbahack2.syui.cf",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://mbahack2.syui.cf/search/?q={q}",
+      "query-input": "required name=q"
+    }
+  }
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73617006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+
+  <div class="container">
+    <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MBA-HACK2</a>
+    </div>
+		<div class="collapse navbar-collapse" id="navbarEexample">
+      <ul class="nav navbar-nav">
+        <li class="active">
+        <a href="/"><span class="icon-phoenix_logo"></span></a>
+        </li>
+
+        <li >
+        <a href="/blog/archives">Archives</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="/middleman/" class="dropdown-toggle" >Pages <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/middleman/">Middleman</a></li>
+          <li><a href="/gitbook/">GitBook</a></li>
+          <li><a href="http://syui__.bitbucket.org/">Hexo</a></li>
+          <li><a href="/lanyon-hugo/">Hugo</a></li>
+          <li><a href="/novel/">Novel-Normal</a></li>
+          <li><a href="/code-guide/">Novel-Material</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+        <a href="/blog/categories/tips/" class="dropdown-toggle" >Tips <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/blog/2014/04/11/macbookair">MacBook</a></li>
+          <li><a href="/blog/2014/03/26/blog-customize">Octopress</a></li>
+          <li><a href="/blog/2014/08/02/file-rename-cli">Script</a></li>
+          <li><a href="/blog/2014/06/03/iphone">iPhone</a></li>
+          <li><a href="/blog/2014/06/03/android">Nexus7</a></li>
+          <li><a href="/blog/2014/06/03/amazon">Amazon</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+        <a href="/blog/categories/tool/" class="dropdown-toggle" >Tool <b class="caret"></b></a>
+
+        <ul class="dropdown-menu">
+          <li><a href="/blog/2014/06/15/airgoogleplus/">airgoogleplus</a></li>
+          <li><a href="/blog/2014/06/12/airchrome/">airchrome.zsh</a></li>
+          <li><a href="/blog/2014/06/25/vim-plugin-airsave/">airsave.vim</a></li>
+          <li><a href="/blog/2014/06/19/airindent-dot-vim/">airindent.vim</a></li>
+          <li><a href="/blog/2014/06/16/icon/">octopress-share-button</a></li>
+          <li><a href="/middleman/blog/2014/01/01/example-article.html">middlemap-simple-tempate</a></li>
+          <li><a href="/hugo-theme-air">hugo-theme-air</a></li>
+        </ul>
+        </li>
+
+        <li ><a href="/about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        <a class="subscribe-rss" href="https://twitter.com/syui__" target="_blank" title="subscribe via Twitter">
+          <span class="visible-xs">Twitter</span>
+          <span class="hidden-xs"><span class="icon-twitter"></span></span>
+        </a>
+        </li>
+        <li>
+        <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+          <span class="visible-xs">RSS</span>
+          <span class="hidden-xs"><span class="icon-rss"></span></span>
+        </a>
+        </li>
+
+        
+      </ul>
+      
+      <form action="https://syui.github.io/search" target="_blank" class="search navbar-form navbar-right">
+        <input type="text" name="q">
+      </form>
+      
+
+
+    </div>
+  </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+
+          <div class="row">
+  <div class="page-content col-md-9">
+
+    <article class="hentry" role="article">
+	  
+      
+  <header class="page-header">
+    
+
+      <p class="meta text-muted text-uppercase">
+       <span class="meta_data_head">
+
+
+
+
+
+
+
+
+
+
+
+<time datetime="2014-11-28T00:00:00+00:00" pubdate data-updated="true"></time></span>
+        
+      </p>
+    
+    
+    <h1 class="entry-title"><a href="/blog/2014/11/28/arch-linux-archiso" class="permalink">
+        Arch Linux GUI
+        
+</a>
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix">
+    <div id="toc-container"><table class="toc" id="toc"><tbody><tr><td>
+<div id="toctitle"><h3>Contents</h3></div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">Arch Linuxのインストール</span></a><ul>
+<li class="toc_level-2 toc_section-2"><a href="#tocAnchor-1-1-1"><span class="tocnumber">1.1</span> <span class="toctext">コマンド</span></a></li>
+<li class="toc_level-2 toc_section-3"><a href="#tocAnchor-1-1-2"><span class="tocnumber">1.2</span> <span class="toctext">ヒント</span></a></li>
+</ul>
+</li>
+<li class="toc_level-1 toc_section-4">
+<a href="#tocAnchor-1-4"><span class="tocnumber">2</span> <span class="toctext">カスタマイズ</span></a><ul>
+<li class="toc_level-2 toc_section-5"><a href="#tocAnchor-1-4-1"><span class="tocnumber">2.1</span> <span class="toctext">インターネット接続</span></a></li>
+<li class="toc_level-2 toc_section-6"><a href="#tocAnchor-1-4-2"><span class="tocnumber">2.2</span> <span class="toctext">ユーザー設定</span></a></li>
+<li class="toc_level-2 toc_section-7"><a href="#tocAnchor-1-4-3"><span class="tocnumber">2.3</span> <span class="toctext">GUI設定</span></a></li>
+<li class="toc_level-2 toc_section-8"><a href="#tocAnchor-1-4-4"><span class="tocnumber">2.4</span> <span class="toctext">端末設定</span></a></li>
+<li class="toc_level-2 toc_section-9"><a href="#tocAnchor-1-4-5"><span class="tocnumber">2.5</span> <span class="toctext">パッケージマネージャー</span></a></li>
+<li class="toc_level-2 toc_section-10"><a href="#tocAnchor-1-4-6"><span class="tocnumber">2.6</span> <span class="toctext">日本語設定</span></a></li>
+<li class="toc_level-2 toc_section-11"><a href="#tocAnchor-1-4-7"><span class="tocnumber">2.7</span> <span class="toctext">ブートローダー設定</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table></div>
+<p><img src="/images/more.png" alt="phoenix-power" align="left">Arch LinuxのGUI環境設定<!--more--><br clear="all"></p>
+
+<h2 id="tocAnchor-1-1">Arch Linuxのインストール</h2>
+
+<p>Archのインストールは、非常に簡単に終わります。起動に必要なものは、実際、いくつかのパッケージ群と、ブートローダーの設定くらいです。以下、最小限のインストール手順を紹介します。</p>
+
+<p>はじめに、ディスクパーティションの作成、パッケージのディスクへのインストールなどを行います。</p>
+
+<p>次に、パッケージをルートフォルダにインストールします。</p>
+
+<p>最後に、ブートローダー<code>GRUB</code>を設定します。</p>
+
+<p>方針としてスワップは設定しませんし、ブートディスクなども分けません。</p>
+
+<p>まず、4G以上あるパソコンは、基本、スワップは不要であり、稀に遅くなる状況が存在するからです。また、<code>home</code>や<code>boot</code>、<code>root</code>なども分けたい人は分けてください。変更、追加されるコマンドは、<code>mkswap</code>、<code>mount</code>、<code>pacstrap</code>くらいです。</p>
+
+<h3 id="tocAnchor-1-1-1">コマンド</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>loadkeys jp106
+</span><span class="line"><span class="c"># キーボードをJISに変更</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>cfdisk /dev/sda
+</span><span class="line">sda1 / 256GB
+</span><span class="line">sda2 空 残り全部
+</span><span class="line"><span class="c"># ディスクパーティションを設定</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>mkfs.ext4 /dev/sda1
+</span><span class="line"><span class="c"># ディスクをフォーマット</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>mount /dev/sda1 /mnt
+</span><span class="line"><span class="c"># 先ほどフォーマットしたディスクで、ルートに設定したものをマウント</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacstrap /mnt base base-devel
+</span><span class="line"><span class="c"># 基本コマンドなどをインストール。場合によっては、 /etc/pacman.d/mirrorlist を編集</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+</span><span class="line"><span class="c"># ディスク情報を追加</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>arch-chroot /mnt
+</span><span class="line"><span class="c"># 指定したディレクトリをルートとしてみなします</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S grub
+</span><span class="line"><span class="c"># ブートローダーであるGRUBをインストール</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>grub-install --force --recheck /dev/sda
+</span><span class="line"><span class="c"># ブートローダーをインストールするディスクを指定し、 /boot/grub にブートローダーをインストール</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>grub-mkconfig -o /boot/grub/grub.cfg
+</span><span class="line"><span class="c"># /etc/defaults/grub からブートローダーの設定である /boot/grub/grub.cfg を作成</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S wireless_tools wpa_supplicant wpa_actiond dialog ifplugd
+</span><span class="line"><span class="nv">$ </span>systemctl <span class="nb">enable </span>netctl-auto@wlp2s0
+</span><span class="line"><span class="nv">$ </span>systemctl <span class="nb">enable </span>dhcpcd.service
+</span><span class="line"><span class="c"># インターネットの設定をしておかないと、起動した時にパッケージなどのダウンロードが出来ないので困る</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">exit</span>
+</span><span class="line"><span class="c"># arch-chroot を終了</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>umount -R /mnt
+</span><span class="line"><span class="c"># /mnt をアンマウント</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>reboot
+</span><span class="line"><span class="c"># 再起動</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>これで終わりです。</p>
+
+<h3 id="tocAnchor-1-1-2">ヒント</h3>
+
+<ul>
+<li>起動画面の<code>Boot existing OS</code>を選択するとHDDが起動します。</li>
+</ul>
+
+
+<p><code>Arch Linux</code>が起動しなくなった時などは、CD/DVD/USBなどのライブディスクを挿入し、そこから修正していきます。具体的には以下のコマンドを実行します。この手順は、重要なので覚えておきましょう。通常は、<code>Boot existing OS</code>の項目を選択すると、先ほど作成したディスク、つまり、HDD/SSDが起動することになります。</p>
+
+<p>起動しない時は、一番上の項目を選択して、以下のコマンドを実行し、修正します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>mount /dev/sda1 /mnt
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>arch-chroot /mnt
+</span><span class="line">
+</span><span class="line"><span class="c"># あとは、設定ファイルを直したり、ログを見たりします。</span>
+</span><span class="line"><span class="c"># 再起動は、 "exit &amp;&amp; umount /mnt &amp;&amp; reboot" でも良いし、 "reboot" だけでも良いです。終了は "poweroff" です</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>reboot
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>したがって、慣れないうちは、DVDなどを挿入しっぱなしでも良いかもしれません。起動時に、<code>Boot existing OS</code>を選択すればよいだけです。</p>
+
+<ul>
+<li><p><code>cfdisk</code>は、<code>wirte</code>を選択し、<code>yes</code>を入力すると、一括保存できます。終了は、<code>quit</code>です。また、<code>type</code>を選択すると、色々便利です。</p></li>
+<li><p><code>root</code>か<code>home</code>に設定した場所を<code>/mnt</code>にマウントします。</p></li>
+<li><p>パッケージのダウンロードが出来ない場合や遅い場合は、<code>/etc/pacman.d/mirrorlist</code>を編集して、対象のURLを上に持ってきます。</p></li>
+</ul>
+
+
+<h2 id="tocAnchor-1-4">カスタマイズ</h2>
+
+<p>カスタマイズでは、ユーザーの作成、設定を行っていきます。</p>
+
+<h3 id="tocAnchor-1-4-1">インターネット接続</h3>
+
+<p>実は、この設定はインストール時に行っておくのがベストです。そのままではインターネットに接続できず、設定を変更したいのなら、再度、CD/DVDを使ってArchを起動し、そこから設定しなければならないからです。ちなみに、Archインストール時に実行した場合は、この手順は不要です。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S wireless_tools wpa_supplicant wpa_actiond dialog ifplugd
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>systemctl <span class="nb">enable </span>netctl-auto@wlp2s0
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>systemctl <span class="nb">enable </span>dhcpcd.service
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>ちなみに、もし、接続設定を忘れてしまった場合は、DVDから起動し、以下のコマンドを叩くしかないです。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>mount /dev/sda1 /mnt
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>arch-chroot /mnt
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S wireless_tools wpa_supplicant wpa_actiond dialog ifplugd
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>reboot
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>ここで使った<code>systemctl</code>コマンドは、サービスの追加などによく使いますので覚えておきましょう。また、Archでは、スクリプトの自動実行はこのコマンドが推奨されています。例えば、<code>uim</code>を起動時に実行したいとして、以下のように使います。ちなみに、<code>uim</code>は日本語入力のアプリで、下記にて紹介している<code>ibus</code>などと同類のものです。したがって、実際、この手順は不要です。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.config/systemd/user/uim-env.service </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>Unit<span class="o">]</span>
+</span><span class="line"><span class="nv">Description</span><span class="o">=</span>uim environment initialization
+</span><span class="line"><span class="nv">Before</span><span class="o">=</span>xorg.target
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>Service<span class="o">]</span>
+</span><span class="line"><span class="nv">Type</span><span class="o">=</span>oneshot
+</span><span class="line"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/systemctl --user <span class="nb">set</span>-environment <span class="nv">XMODIFIERS</span><span class="o">=</span>@im<span class="o">=</span>uim
+</span><span class="line"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/systemctl --user <span class="nb">set</span>-environment <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>uim
+</span><span class="line"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/systemctl --user <span class="nb">set</span>-environment <span class="nv">QT_IM_MODULE</span><span class="o">=</span>uim
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.config/systemd/user/uim.service </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>Unit<span class="o">]</span>
+</span><span class="line"><span class="nv">Description</span><span class="o">=</span>uim daemon
+</span><span class="line"><span class="nv">Wants</span><span class="o">=</span>uim-env.service
+</span><span class="line"><span class="nv">After</span><span class="o">=</span>xorg.target
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>Service<span class="o">]</span>
+</span><span class="line"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/uim-xim
+</span><span class="line"><span class="nv">Restart</span><span class="o">=</span>on-abort
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>Install<span class="o">]</span>
+</span><span class="line"><span class="nv">WantedBy</span><span class="o">=</span>xorg.target
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.config/systemd/user/uim-toolbar.service </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>Unit<span class="o">]</span>
+</span><span class="line"><span class="nv">Description</span><span class="o">=</span>uim toolbar
+</span><span class="line"><span class="nv">PartOf</span><span class="o">=</span>uim.service
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>Service<span class="o">]</span>
+</span><span class="line"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/uim-toolbar-of-your-choice
+</span><span class="line"><span class="nv">Restart</span><span class="o">=</span>on-abort
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>Install<span class="o">]</span>
+</span><span class="line"><span class="nv">WantedBy</span><span class="o">=</span>uim.service
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>以下のコマンドでサービスが有効になります。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">$ systemctl --user enable uim.service uim-toolbar.service</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-2">ユーザー設定</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="c"># login : root</span>
+</span><span class="line"><span class="c"># passwd : root</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -Sy sudo
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">echo </span>xxxx &gt; /etc/hostname
+</span><span class="line"><span class="c"># ホスト名を決める。user@hostnameとなり、私の場合はパソコン名称、OSなどにすることが多い</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>useradd -m -G wheel -s /bin/bash xxxx
+</span><span class="line"><span class="c"># userをwheelグループで作成する。wheelグループは、rootの次くらいに管理ユーザー的なグループ</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>passwd
+</span><span class="line"><span class="c"># rootのパスワードを設定</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>passwd xxxx
+</span><span class="line"><span class="c"># userのパスワードを設定</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>su - xxxx
+</span><span class="line"><span class="c"># userに切り替える</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h4>locale etc…</h4>
+
+<p>コメントアウトを外します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/etc/locale.gen </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line">en_US.UTF-8 UTF-8
+</span><span class="line">ja_JP.UTF-8 UTF-8
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+</span><span class="line"><span class="c"># タイムゾーン</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>hwclock --systohc --utc
+</span><span class="line"><span class="c"># ハードウェアクロック、時計</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>visudo
+</span><span class="line"><span class="c"># ユーザー権限の設定</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>コメントアウトを外します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line">Defaults env_keep +<span class="o">=</span> <span class="s2">"HOME"</span>
+</span><span class="line">%wheel <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> ALL
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-3">GUI設定</h3>
+
+<h4>x</h4>
+
+<p>デスクトップです。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S xorg-server xorg-server-utils xorg-xinit xorg-xclock xterm
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>lspci | grep VGA
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S xf86-video-intel
+</span><span class="line"><span class="c"># できない場合は、全部入りとして pacman -S xorg xorg-xinit xorg-input-drivers xorg-video-drivers を実行</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>startx
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p><code>VirtualBox</code>の場合は、以下のコマンドを実行するとよいでしょう。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S virtualbox-guest-utils virtualbox-host-modules virtualbox-host-dkms
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>modprobe -a vboxguest vboxsf vboxvideo
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">echo</span> -e <span class="s2">"vboxguest\nvboxsf\nvboxvideo\nvboxdrv\nvboxnetadp\nvboxnetflt"</span> &gt; /etc/modules-load.d/virtualbox.conf
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">echo</span>  <span class="s1">'VBoxClient-all &amp;'</span> &gt; ~/.xinitrc
+</span><span class="line"><span class="c"># 自動起動の設定</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>非常に重要な<code>X</code>の設定は、<code>/etc/X11/</code>以下にあり、サービスやスタート的の設定が<code>xinit</code>、ハード的なものが<code>xorg.conf.d</code>になります。重要なので覚えておきましょう。</p>
+
+<p>例えば、私は、キーボード、タッチパッドのオリジナル設定を<code>/etc/X11/xorg.conf.d/</code>以下に書いています。</p>
+
+<h4>slim</h4>
+
+<p>ログインマネージャーです。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S slim arhlinux-themes-slim slim-themes
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vi /etc/slim.conf
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>以下の箇所をコメントアウトや編集します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/slim.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="c"># 初回実行するコマンド</span>
+</span><span class="line">login_cmd <span class="nb">exec</span> /bin/zsh -l ~/.xinitrc %session
+</span><span class="line">
+</span><span class="line"><span class="c"># 起動時にログインするユーザー</span>
+</span><span class="line">default_user hoge
+</span><span class="line">
+</span><span class="line"><span class="c"># オートログイン有効</span>
+</span><span class="line">auto_login yes
+</span><span class="line">
+</span><span class="line"><span class="c"># デーモン有効</span>
+</span><span class="line">daemon yes
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h4>awesome</h4>
+
+<p>ウィンドウマネージャーです。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S awesome
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>mkdir -p ~/.config/awesome
+</span><span class="line"><span class="c"># Linux の設定ファイルは、 ~/.config 以下が推奨されています</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>cp /etc/xdg/awesome/rc.lua ~/.config/awesome/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S xcompmgr
+</span><span class="line"><span class="c"># ウィンドウ透過のために必要</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>touch ~/.xinitrc
+</span><span class="line"><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"xcompmgr -n &amp;"</span> &gt;&gt; .xinitrc
+</span><span class="line"><span class="c"># ウィンドウ透過</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"exec awesome"</span> &gt;&gt; .xinitrc
+</span><span class="line"><span class="c"># awesomeの自動起動</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>grep -n wallp /usr/share/awesome/themes/default/theme.lua
+</span><span class="line"><span class="c"># 壁紙の設定、この箇所を編集します</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>ちなみに、Linuxでも他のOSでもそうですが、設定ファイルのテンプレート等を欲しい時は、<code>/usr/share</code>などのフォルダを漁ると大体見つかるのでオススメです</p>
+
+<h4>spacefm</h4>
+
+<p>ファイルマネージャーです。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S spacefm
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-4">端末設定</h3>
+
+<p>ターミナルで使うものなどをインストールしていきます。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S mlterm lilyterm terminator
+</span><span class="line"><span class="c"># お勧めのターミナルです。私は lilyterm を使ってます</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>pacman -S zsh vim tmux w3m git curl wget openssl openssh
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-5">パッケージマネージャー</h3>
+
+<h4>yaourt</h4>
+
+<p>専用のリポジトリを追加します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/pacman.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>archlinuxfr<span class="o">]</span>
+</span><span class="line"><span class="nv">SigLevel</span> <span class="o">=</span> Never
+</span><span class="line"><span class="nv">Server</span> <span class="o">=</span> http://repo.archlinux.fr/<span class="nv">$arch</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>リポジトリを追加した後、次を実行してください:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -Sy yaourt
+</span><span class="line"><span class="c"># S --sync, y --refresh, -u --upgrades</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-6">日本語設定</h3>
+
+<h4>ibus-mozc</h4>
+
+<p>日本語入力環境を整えます。</p>
+
+<p><code>mozc</code>をインストールするために専用のリポジトリを追加します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/pacman.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>pnsft-pur<span class="o">]</span>
+</span><span class="line"><span class="nv">SigLevel</span> <span class="o">=</span> Optional TrustAll
+</span><span class="line"><span class="nv">Server</span> <span class="o">=</span> http://downloads.sourceforge.net/project/pnsft-aur/pur/<span class="nv">$arch</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>リポジトリを追加した後、次を実行してください:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -Sy ibus ibus-mozc
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>ibus-setup
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>/usr/lib/mozc/mozc_tool --mode<span class="o">=</span>config_dialog
+</span><span class="line"><span class="c"># 注意点としては、 mozc は root では開けません</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>端末から<code>mozc</code>の設定を開くには<code>/usr/lib/mozc/mozc_tool module=config_dialog</code>を実行します。</p>
+
+<p>自動起動するには、以下の設定を行います。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.xinitrc </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nb">export </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>ibus
+</span><span class="line"><span class="nb">export </span><span class="nv">XMODIFIERS</span><span class="o">=</span>@im<span class="o">=</span>ibus
+</span><span class="line"><span class="nb">export </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>ibus
+</span><span class="line">ibus-daemon -drx
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>また、現在は、<code>fctix</code>というものが人気みたいです。</p>
+
+<h4>fctix-anthy</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pacman -S fcitx fcitx-anthy
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.xinitrc </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nb">export </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
+</span><span class="line"><span class="nb">export </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
+</span><span class="line"><span class="nb">export </span><span class="nv">XMODIFIERS</span><span class="o">=</span><span class="s2">"@im=fcitx"</span>
+</span><span class="line">fcitx
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p><code>Anthy</code>の設定では、オリジナルを作るよりも、<code>MS IME</code>など適当なキーバインドを選びましょう。</p>
+
+<h4>system-font</h4>
+
+<p>embeddedのビットマップフォントの無効化と、ヒンティングを無効化します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>~/.config/fontconfig/font.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td>
+<td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+</span><span class="line"><span class="cp">&lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;</span>
+</span><span class="line"><span class="nt">&lt;fontconfig&gt;</span>
+</span><span class="line">  <span class="nt">&lt;match</span> <span class="na">target=</span><span class="s">"font"</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nt">&lt;edit</span> <span class="na">mode=</span><span class="s">"assign"</span> <span class="na">name=</span><span class="s">"embeddedbitmap"</span><span class="nt">&gt;</span>
+</span><span class="line">      <span class="nt">&lt;bool&gt;</span>false<span class="nt">&lt;/bool&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/edit&gt;</span>
+</span><span class="line">    <span class="nt">&lt;edit</span> <span class="na">mode=</span><span class="s">"assign"</span> <span class="na">name=</span><span class="s">"hintstyle"</span><span class="nt">&gt;</span>
+</span><span class="line">       <span class="nt">&lt;const&gt;</span>hintnone<span class="nt">&lt;/const&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/edit&gt;</span>
+</span><span class="line">  <span class="nt">&lt;/match&gt;</span>
+</span><span class="line"><span class="nt">&lt;/fontconfig&gt;</span>
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h4>ttf-font</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>yaourt -S ttf-migmix
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>高度な設定を<code>/etc/vconsole.conf</code>ですることができ、起動時に<code>systemd</code>によって読み込まれます。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/vconsole.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">FONT</span><span class="o">=</span>lat2-16
+</span><span class="line"><span class="nv">FONT_MAP</span><span class="o">=</span>8859-2
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/locale.conf </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">LANG</span><span class="o">=</span>ja_JP.UTF-8
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<h3 id="tocAnchor-1-4-7">ブートローダー設定</h3>
+
+<p>ダサい起動画面は、変更するのが良いでしょう。</p>
+
+<h4>grub</h4>
+
+<p>まず、テーマをダウロードしてきます。たくさん公開されてますので、検索とかすれば良いのが見つかるでしょう。</p>
+
+<p><a href="https://github.com/Generator/Grub2-themes">https://github.com/Generator/Grub2-themes</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> ~/Downloads
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>git clone git://github.com/Generator/Grub2-themes.git
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>cp -r ~/Downloads/Grub2-themes/<span class="o">{</span>Archlinux,Archxion<span class="o">}</span> /boot/grub/themes/
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>そして、設定ファイルを編集します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/etc/default/grub </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">GRUB_THEME</span><span class="o">=</span><span class="s2">"/boot/grub/themes/Archlinux/theme.txt"</span>
+</span><span class="line"><span class="nv">GRUB_GFXMODE</span><span class="o">=</span>1024x768
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>次に、設定ファイルを変換します。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>grub-mkconfig -o /boot/grub/grub.cfg
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>GRUBの設定は、元の設定ファイルである<code>/boot/grub/grub.cfg</code>を編集する方法と、簡易化された<code>/etc/default/grub</code>を編集して、<code>grub-mkconfig -o /boot/grub/grub.cfg</code>または、 <code>update-grub</code>コマンドで変換する方法があります。ここでは、後者の方法を採用しています。</p>
+
+<p>私の場合は、ついでの設定として、以下を変更しました。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>/boot/grub/grub.cfg </span></figcaption>
+<div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td>
+<td class="code"><pre><code class="bash"><span class="line"><span class="nv">default</span><span class="o">=</span>0
+</span><span class="line"><span class="nv">timeout</span><span class="o">=</span>10
+</span><span class="line"><span class="nv">splashimage</span><span class="o">=(</span>hd0,0<span class="o">)</span>/grub/splash.xpm.gz
+</span><span class="line">
+</span><span class="line"><span class="c"># GRUB メニューインターフェイスを表示しないようにし、timeout 期間の経過後に default エントリをロードします。[Esc] キーを押すと、標準の GRUB メニューを表示できます</span>
+</span><span class="line">hiddenmenu
+</span><span class="line">title Red Hat Enterprise Linux AS <span class="o">(</span>2.6.8-1.523<span class="o">)</span>
+</span><span class="line">        <span class="c"># Linux カーネルのデバッグ出力など</span>
+</span><span class="line">        linux <span class="nv">$grub_boot</span>/vmlinuz-linux <span class="nv">root</span><span class="o">=</span>/dev/disk/by-uuid/<span class="nv">$the_root_uuid</span> ro quiet
+</span><span class="line">
+</span><span class="line"><span class="c"># section to load Windows</span>
+</span><span class="line">title Windows
+</span><span class="line">        rootnoverify <span class="o">(</span>hd0,0<span class="o">)</span>
+</span><span class="line">        chainloader +1
+</span></code></pre></td>
+</tr></table></div></figure></notextile></div>
+
+
+<p>注目すべきは、<code>linux</code>の最後のオプションです。</p>
+
+<table>
+<thead>
+<tr>
+<th> オプション </th>
+<th> 内容 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ro </td>
+<td> root 読み取りマウント</td>
+</tr>
+<tr>
+<td> rw </td>
+<td> root 読み書きマウント</td>
+</tr>
+<tr>
+<td> quiet </td>
+<td> デバッグ出力削減</td>
+</tr>
+<tr>
+<td> rhgb </td>
+<td> グラフィカル表示</td>
+</tr>
+<tr>
+<td> splash/nosplash </td>
+<td> スプラッシュ表示</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><a href="https://docs.oracle.com/cd/E39368_01/e48214/ch04s02.html" target="_blank">4.2 GRUBブート・ローダーについて</a></p>
+
+<p><a href="http://www2.it-shikaku.jp/top30.php?hidari=101-02-02.php" target="_blank">GRUB LPIC対策</a></p>
+
+</div>
+
+
+      <footer>
+
+        <p class="meta text-muted">
+          
+  
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </p>
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hack/'>hack</a>
+  
+</span>
+
+
+        <span class="octicon octicon-chevron-right" style="font-size:20px;"></span> 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/arch/'>arch</a>
+  
+</span>
+
+
+         
+          
+<div class="share_button_syui">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https://mbahack2.syui.cf/blog/2014/11/28/arch-linux-archiso&title=Arch Linux GUI" target="_blank"><span class="hatena-name"><span class="icon-hatena"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;"
+>B!</span> Bookmark </span></a>
+  <a href="https://twitter.com/share?url=https://mbahack2.syui.cf/blog/2014/11/28/arch-linux-archiso&text=Arch Linux GUI&via=syui__" target="_blank"><span class="twitter-name"><span class="icon-twitter"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> Tweet </span></a>
+  <a href="https://plus.google.com/share?url=https://mbahack2.syui.cf/blog/2014/11/28/arch-linux-archiso" target="_blank"><span class="googleplus-name"><span class="icon-google-plus"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> +1 </span></a>
+  <a href="http://feedly.com/i/subscription/feed/https://mbahack2.syui.cf/atom.xml" target="_blank"><span class="feedly-name"><span class="icon-rss"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> Feedly </span></a>
+</div>
+
+
+
+               
+
+
+
+        
+
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2014/11/22/pyenv-python-install" title="Previous Post: Pythonのバージョン管理"><span class="octicon octicon-chevron-left" style="font-size:50px"></span></a></li>
+            
+
+            <li><a href="https://mbahack2.syui.cf"><span class="icon-phoenix_logo" style="font-size:50px"></span></a></li>
+            
+            <li class="next"><a href="/blog/2014/11/30/hatena-cli" title="Next Post: はてなのニュースをコマンドラインから選択する"><span class="octicon octicon-chevron-right" style="font-size:50px"></span></a></li>
+            
+          </ul>
+        
+
+   
+      <section>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7486046788071230"
+     data-ad-slot="5761768700"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script type="text/javascript">
+   talaria.init({REPOSITORY_NAME: 'syui.github.io-comment',
+                 GITHUB_USERNAME: 'mba-hack'});
+  </script>
+
+        <div id="disqus_thread" aria-live="polite"></div>
+      </section>
+    
+
+      </footer>
+    </article>
+  </div>
+  
+  <aside class="sidebar col-md-3">
+    
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7486046788071230"
+     data-ad-slot="5761768700"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Recent Posts</div>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2017/01/22/wercker-deploy">wercker-docker-deploy</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/09/elm-headley-server">elm-headley-server</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/08/elm-html-virtual-dom">elm-html-virtual-dom</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/07/riot-webpack">riot-webpack-superstatic</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/06/hugo-search-lunrjs">hugo-search-lunrjs-grunt</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/05/hugo-archives">hugo-archives</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/04/calheatmap-jquery-ajax">calheatmap-jquery-ajax</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/03/shelljs-nodecli-eslint">shelljs-nodecli-eslint</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/02/particlejs-creatjs-wave">particlejs-creatjs-wave</a>
+    
+    <a class="list-group-item " href="/blog/2016/05/25/spritestudio-sample">spritestudio-sample</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Qiita</div>
+  </div>
+  <a class="qiita-timeline" href="https://qiita.com/users/syui" data-qiita-username="syui">syui</a><script src="/javascripts/qiita.js"></script>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Categories</div>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/blog/index.html">
+        <span class="badge">47</span>
+        blog
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/tips/index.html">
+        <span class="badge">17</span>
+        tips
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/hack/index.html">
+        <span class="badge">141</span>
+        hack
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/private/index.html">
+        <span class="badge">47</span>
+        private
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/music/index.html">
+        <span class="badge">23</span>
+        music
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/anime/index.html">
+        <span class="badge">13</span>
+        anime
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/comic/index.html">
+        <span class="badge">4</span>
+        comic
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/lang/index.html">
+        <span class="badge">3</span>
+        lang
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/security/index.html">
+        <span class="badge">1</span>
+        security
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/game/index.html">
+        <span class="badge">5</span>
+        game
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='https://syui.github.io/blog/tags/0day' style='font-size: 101.81818181818181%'>0day(1)</a> <a href='https://syui.github.io/blog/tags/account' style='font-size: 101.81818181818181%'>account(1)</a> <a href='https://syui.github.io/blog/tags/aircrack-ng' style='font-size: 101.81818181818181%'>aircrack-ng(1)</a> <a href='https://syui.github.io/blog/tags/ajax' style='font-size: 101.81818181818181%'>ajax(1)</a> <a href='https://syui.github.io/blog/tags/aldnoah' style='font-size: 101.81818181818181%'>aldnoah(1)</a> <a href='https://syui.github.io/blog/tags/amazon' style='font-size: 107.27272727272727%'>amazon(4)</a> <a href='https://syui.github.io/blog/tags/android' style='font-size: 130.9090909090909%'>android(17)</a> <a href='https://syui.github.io/blog/tags/android' style='font-size: 103.63636363636364%'>android,(2)</a> <a href='https://syui.github.io/blog/tags/angular' style='font-size: 101.81818181818181%'>angular(1)</a> <a href='https://syui.github.io/blog/tags/anime' style='font-size: 112.72727272727272%'>anime(7)</a> <a href='https://syui.github.io/blog/tags/api' style='font-size: 103.63636363636364%'>api(2)</a> <a href='https://syui.github.io/blog/tags/apple' style='font-size: 105.45454545454545%'>apple(3)</a> <a href='https://syui.github.io/blog/tags/applescript' style='font-size: 110.9090909090909%'>applescript(6)</a> <a href='https://syui.github.io/blog/tags/application' style='font-size: 105.45454545454545%'>application(3)</a> <a href='https://syui.github.io/blog/tags/arch' style='font-size: 156.36363636363637%'>arch(31)</a> <a href='https://syui.github.io/blog/tags/archlinux' style='font-size: 127.27272727272728%'>archlinux(15)</a> <a href='https://syui.github.io/blog/tags/au' style='font-size: 101.81818181818181%'>au(1)</a> <a href='https://syui.github.io/blog/tags/audio' style='font-size: 105.45454545454545%'>audio(3)</a> <a href='https://syui.github.io/blog/tags/awesome' style='font-size: 101.81818181818181%'>awesome(1)</a> <a href='https://syui.github.io/blog/tags/bag' style='font-size: 103.63636363636364%'>bag(2)</a> <a href='https://syui.github.io/blog/tags/battery' style='font-size: 103.63636363636364%'>battery(2)</a> <a href='https://syui.github.io/blog/tags/bgm' style='font-size: 101.81818181818181%'>bgm(1)</a> <a href='https://syui.github.io/blog/tags/bitbucket' style='font-size: 101.81818181818181%'>bitbucket(1)</a> <a href='https://syui.github.io/blog/tags/blackarch' style='font-size: 101.81818181818181%'>blackarch(1)</a> <a href='https://syui.github.io/blog/tags/blackbullet' style='font-size: 101.81818181818181%'>black・bullet(1)</a> <a href='https://syui.github.io/blog/tags/blog' style='font-size: 101.81818181818181%'>blog(1)</a> <a href='https://syui.github.io/blog/tags/blogger' style='font-size: 101.81818181818181%'>blogger(1)</a> <a href='https://syui.github.io/blog/tags/bluetooth' style='font-size: 103.63636363636364%'>bluetooth(2)</a> <a href='https://syui.github.io/blog/tags/book' style='font-size: 103.63636363636364%'>book(2)</a> <a href='https://syui.github.io/blog/tags/bootstrap' style='font-size: 105.45454545454545%'>bootstrap(3)</a> <a href='https://syui.github.io/blog/tags/bower' style='font-size: 103.63636363636364%'>bower(2)</a> <a href='https://syui.github.io/blog/tags/build' style='font-size: 101.81818181818181%'>build(1)</a> <a href='https://syui.github.io/blog/tags/button' style='font-size: 101.81818181818181%'>button(1)</a> <a href='https://syui.github.io/blog/tags/cal-heatmap' style='font-size: 101.81818181818181%'>cal-heatmap(1)</a> <a href='https://syui.github.io/blog/tags/calendar' style='font-size: 101.81818181818181%'>calendar(1)</a> <a href='https://syui.github.io/blog/tags/cdr' style='font-size: 101.81818181818181%'>cdr(1)</a> <a href='https://syui.github.io/blog/tags/chat' style='font-size: 101.81818181818181%'>chat(1)</a> <a href='https://syui.github.io/blog/tags/chrome' style='font-size: 107.27272727272727%'>chrome(4)</a> <a href='https://syui.github.io/blog/tags/ci' style='font-size: 101.81818181818181%'>ci(1)</a> <a href='https://syui.github.io/blog/tags/cli' style='font-size: 109.0909090909091%'>cli(5)</a> <a href='https://syui.github.io/blog/tags/clipboard' style='font-size: 101.81818181818181%'>clipboard(1)</a> <a href='https://syui.github.io/blog/tags/comic' style='font-size: 105.45454545454545%'>comic(3)</a> <a href='https://syui.github.io/blog/tags/command' style='font-size: 101.81818181818181%'>command(1)</a> <a href='https://syui.github.io/blog/tags/conan' style='font-size: 101.81818181818181%'>conan(1)</a> <a href='https://syui.github.io/blog/tags/coreos' style='font-size: 103.63636363636364%'>coreos(2)</a> <a href='https://syui.github.io/blog/tags/creatjs' style='font-size: 101.81818181818181%'>creatjs(1)</a> <a href='https://syui.github.io/blog/tags/css' style='font-size: 121.81818181818181%'>css(12)</a> <a href='https://syui.github.io/blog/tags/dns' style='font-size: 103.63636363636364%'>dns(2)</a> <a href='https://syui.github.io/blog/tags/docker' style='font-size: 110.9090909090909%'>docker(6)</a> <a href='https://syui.github.io/blog/tags/docomo' style='font-size: 103.63636363636364%'>docomo(2)</a> <a href='https://syui.github.io/blog/tags/domain' style='font-size: 103.63636363636364%'>domain(2)</a> <a href='https://syui.github.io/blog/tags/dotfile' style='font-size: 101.81818181818181%'>dotfile(1)</a> <a href='https://syui.github.io/blog/tags/drupal' style='font-size: 101.81818181818181%'>drupal(1)</a> <a href='https://syui.github.io/blog/tags/dtm' style='font-size: 101.81818181818181%'>dtm(1)</a> <a href='https://syui.github.io/blog/tags/editor' style='font-size: 103.63636363636364%'>editor(2)</a> <a href='https://syui.github.io/blog/tags/elixir' style='font-size: 103.63636363636364%'>elixir(2)</a> <a href='https://syui.github.io/blog/tags/elm' style='font-size: 103.63636363636364%'>elm(2)</a> <a href='https://syui.github.io/blog/tags/error' style='font-size: 101.81818181818181%'>error(1)</a> <a href='https://syui.github.io/blog/tags/eslint' style='font-size: 101.81818181818181%'>eslint(1)</a> <a href='https://syui.github.io/blog/tags/feedly' style='font-size: 101.81818181818181%'>feedly(1)</a> <a href='https://syui.github.io/blog/tags/ffxiv' style='font-size: 101.81818181818181%'>ffxiv(1)</a> <a href='https://syui.github.io/blog/tags/filemanager' style='font-size: 101.81818181818181%'>filemanager(1)</a> <a href='https://syui.github.io/blog/tags/flux' style='font-size: 101.81818181818181%'>flux(1)</a> <a href='https://syui.github.io/blog/tags/font' style='font-size: 101.81818181818181%'>font(1)</a> <a href='https://syui.github.io/blog/tags/fuctory-unlock' style='font-size: 101.81818181818181%'>fuctory-unlock(1)</a> <a href='https://syui.github.io/blog/tags/game' style='font-size: 114.54545454545455%'>game(8)</a> <a href='https://syui.github.io/blog/tags/gist' style='font-size: 101.81818181818181%'>gist(1)</a> <a href='https://syui.github.io/blog/tags/git' style='font-size: 112.72727272727272%'>git(7)</a> <a href='https://syui.github.io/blog/tags/github' style='font-size: 160.0%'>github(33)</a> <a href='https://syui.github.io/blog/tags/gitlab' style='font-size: 103.63636363636364%'>gitlab(2)</a> <a href='https://syui.github.io/blog/tags/gitlab-ci' style='font-size: 101.81818181818181%'>gitlab-ci(1)</a> <a href='https://syui.github.io/blog/tags/go' style='font-size: 101.81818181818181%'>go(1)</a> <a href='https://syui.github.io/blog/tags/golang' style='font-size: 110.9090909090909%'>golang(6)</a> <a href='https://syui.github.io/blog/tags/google' style='font-size: 112.72727272727272%'>google(7)</a> <a href='https://syui.github.io/blog/tags/google-api' style='font-size: 101.81818181818181%'>google-api(1)</a> <a href='https://syui.github.io/blog/tags/grunt' style='font-size: 101.81818181818181%'>grunt(1)</a> <a href='https://syui.github.io/blog/tags/hack' style='font-size: 101.81818181818181%'>hack(1)</a> <a href='https://syui.github.io/blog/tags/hatena' style='font-size: 101.81818181818181%'>hatena(1)</a> <a href='https://syui.github.io/blog/tags/hexo' style='font-size: 101.81818181818181%'>hexo(1)</a> <a href='https://syui.github.io/blog/tags/html' style='font-size: 120.0%'>html(11)</a> <a href='https://syui.github.io/blog/tags/hubot' style='font-size: 101.81818181818181%'>hubot(1)</a> <a href='https://syui.github.io/blog/tags/hugo' style='font-size: 107.27272727272727%'>hugo(4)</a> <a href='https://syui.github.io/blog/tags/i3' style='font-size: 101.81818181818181%'>i3(1)</a> <a href='https://syui.github.io/blog/tags/icon' style='font-size: 103.63636363636364%'>icon(2)</a> <a href='https://syui.github.io/blog/tags/iconfont' style='font-size: 101.81818181818181%'>iconfont(1)</a> <a href='https://syui.github.io/blog/tags/iesd' style='font-size: 101.81818181818181%'>iesd(1)</a> <a href='https://syui.github.io/blog/tags/iij' style='font-size: 101.81818181818181%'>iij(1)</a> <a href='https://syui.github.io/blog/tags/illust' style='font-size: 101.81818181818181%'>illust(1)</a> <a href='https://syui.github.io/blog/tags/imagemagick' style='font-size: 101.81818181818181%'>imagemagick(1)</a> <a href='https://syui.github.io/blog/tags/imotyo' style='font-size: 101.81818181818181%'>imotyo(1)</a> <a href='https://syui.github.io/blog/tags/indent' style='font-size: 101.81818181818181%'>indent(1)</a> <a href='https://syui.github.io/blog/tags/ios' style='font-size: 107.27272727272727%'>ios(4)</a> <a href='https://syui.github.io/blog/tags/iphone' style='font-size: 109.0909090909091%'>iphone(5)</a> <a href='https://syui.github.io/blog/tags/irc' style='font-size: 101.81818181818181%'>irc(1)</a> <a href='https://syui.github.io/blog/tags/items' style='font-size: 101.81818181818181%'>items(1)</a> <a href='https://syui.github.io/blog/tags/javascript' style='font-size: 107.27272727272727%'>javascript(4)</a> <a href='https://syui.github.io/blog/tags/jekyll' style='font-size: 107.27272727272727%'>jekyll(4)</a> <a href='https://syui.github.io/blog/tags/jockerscript' style='font-size: 101.81818181818181%'>jockerscript(1)</a> <a href='https://syui.github.io/blog/tags/jquery' style='font-size: 103.63636363636364%'>jquery(2)</a> <a href='https://syui.github.io/blog/tags/js' style='font-size: 103.63636363636364%'>js(2)</a> <a href='https://syui.github.io/blog/tags/json' style='font-size: 103.63636363636364%'>json(2)</a> <a href='https://syui.github.io/blog/tags/julius' style='font-size: 101.81818181818181%'>julius(1)</a> <a href='https://syui.github.io/blog/tags/kail' style='font-size: 101.81818181818181%'>kail(1)</a> <a href='https://syui.github.io/blog/tags/karabiner' style='font-size: 101.81818181818181%'>karabiner(1)</a> <a href='https://syui.github.io/blog/tags/libnotify' style='font-size: 101.81818181818181%'>libnotify(1)</a> <a href='https://syui.github.io/blog/tags/life' style='font-size: 101.81818181818181%'>life(1)</a> <a href='https://syui.github.io/blog/tags/lingr' style='font-size: 101.81818181818181%'>lingr(1)</a> <a href='https://syui.github.io/blog/tags/linux' style='font-size: 141.8181818181818%'>linux(23)</a> <a href='https://syui.github.io/blog/tags/live2d' style='font-size: 101.81818181818181%'>live2d(1)</a> <a href='https://syui.github.io/blog/tags/lunrjs' style='font-size: 101.81818181818181%'>lunrjs(1)</a> <a href='https://syui.github.io/blog/tags/mac' style='font-size: 152.72727272727272%'>mac(29)</a> <a href='https://syui.github.io/blog/tags/macbook' style='font-size: 109.0909090909091%'>macbook(5)</a> <a href='https://syui.github.io/blog/tags/manjaro' style='font-size: 107.27272727272727%'>manjaro(4)</a> <a href='https://syui.github.io/blog/tags/markdown' style='font-size: 101.81818181818181%'>markdown(1)</a> <a href='https://syui.github.io/blog/tags/mavericks' style='font-size: 101.81818181818181%'>mavericks(1)</a> <a href='https://syui.github.io/blog/tags/metatrader' style='font-size: 101.81818181818181%'>metatrader(1)</a> <a href='https://syui.github.io/blog/tags/metatrader4' style='font-size: 101.81818181818181%'>metatrader4(1)</a> <a href='https://syui.github.io/blog/tags/middleman' style='font-size: 116.36363636363636%'>middleman(9)</a> <a href='https://syui.github.io/blog/tags/middleman' style='font-size: 101.81818181818181%'>middleman,(1)</a> <a href='https://syui.github.io/blog/tags/miku' style='font-size: 114.54545454545455%'>miku(8)</a> <a href='https://syui.github.io/blog/tags/mithril' style='font-size: 101.81818181818181%'>mithril(1)</a> <a href='https://syui.github.io/blog/tags/mmd' style='font-size: 107.27272727272727%'>mmd(4)</a> <a href='https://syui.github.io/blog/tags/mmm' style='font-size: 103.63636363636364%'>mmm(2)</a> <a href='https://syui.github.io/blog/tags/mp4' style='font-size: 101.81818181818181%'>mp4(1)</a> <a href='https://syui.github.io/blog/tags/mplayer' style='font-size: 101.81818181818181%'>mplayer(1)</a> <a href='https://syui.github.io/blog/tags/msys' style='font-size: 101.81818181818181%'>msys(1)</a> <a href='https://syui.github.io/blog/tags/music' style='font-size: 101.81818181818181%'>music(1)</a> <a href='https://syui.github.io/blog/tags/nasne' style='font-size: 101.81818181818181%'>nasne(1)</a> <a href='https://syui.github.io/blog/tags/network' style='font-size: 101.81818181818181%'>network(1)</a> <a href='https://syui.github.io/blog/tags/nexus' style='font-size: 101.81818181818181%'>nexus(1)</a> <a href='https://syui.github.io/blog/tags/node' style='font-size: 105.45454545454545%'>node(3)</a> <a href='https://syui.github.io/blog/tags/node-dot-js' style='font-size: 103.63636363636364%'>node.js(2)</a> <a href='https://syui.github.io/blog/tags/nodejs' style='font-size: 101.81818181818181%'>nodejs(1)</a> <a href='https://syui.github.io/blog/tags/notify' style='font-size: 101.81818181818181%'>notify(1)</a> <a href='https://syui.github.io/blog/tags/novel' style='font-size: 101.81818181818181%'>novel(1)</a> <a href='https://syui.github.io/blog/tags/octopress' style='font-size: 160.0%'>octopress(33)</a> <a href='https://syui.github.io/blog/tags/openssh' style='font-size: 101.81818181818181%'>openssh(1)</a> <a href='https://syui.github.io/blog/tags/package' style='font-size: 101.81818181818181%'>package(1)</a> <a href='https://syui.github.io/blog/tags/pacman' style='font-size: 101.81818181818181%'>pacman(1)</a> <a href='https://syui.github.io/blog/tags/pantheon' style='font-size: 101.81818181818181%'>pantheon(1)</a> <a href='https://syui.github.io/blog/tags/particlejs' style='font-size: 101.81818181818181%'>particlejs(1)</a> <a href='https://syui.github.io/blog/tags/particles' style='font-size: 101.81818181818181%'>particles(1)</a> <a href='https://syui.github.io/blog/tags/peco' style='font-size: 101.81818181818181%'>peco(1)</a> <a href='https://syui.github.io/blog/tags/phoenix' style='font-size: 103.63636363636364%'>phoenix(2)</a> <a href='https://syui.github.io/blog/tags/photo' style='font-size: 101.81818181818181%'>photo(1)</a> <a href='https://syui.github.io/blog/tags/plugin' style='font-size: 105.45454545454545%'>plugin(3)</a> <a href='https://syui.github.io/blog/tags/powershell' style='font-size: 101.81818181818181%'>powershell(1)</a> <a href='https://syui.github.io/blog/tags/private' style='font-size: 105.45454545454545%'>private(3)</a> <a href='https://syui.github.io/blog/tags/privoxy' style='font-size: 101.81818181818181%'>privoxy(1)</a> <a href='https://syui.github.io/blog/tags/proxy' style='font-size: 105.45454545454545%'>proxy(3)</a> <a href='https://syui.github.io/blog/tags/psp' style='font-size: 101.81818181818181%'>psp(1)</a> <a href='https://syui.github.io/blog/tags/python' style='font-size: 105.45454545454545%'>python(3)</a> <a href='https://syui.github.io/blog/tags/qiita' style='font-size: 101.81818181818181%'>qiita(1)</a> <a href='https://syui.github.io/blog/tags/rails' style='font-size: 101.81818181818181%'>rails(1)</a> <a href='https://syui.github.io/blog/tags/react' style='font-size: 101.81818181818181%'>react(1)</a> <a href='https://syui.github.io/blog/tags/react' style='font-size: 101.81818181818181%'>React(1)</a> <a href='https://syui.github.io/blog/tags/redshift' style='font-size: 101.81818181818181%'>redshift(1)</a> <a href='https://syui.github.io/blog/tags/riot' style='font-size: 101.81818181818181%'>riot(1)</a> <a href='https://syui.github.io/blog/tags/rocket' style='font-size: 101.81818181818181%'>rocket(1)</a> <a href='https://syui.github.io/blog/tags/root' style='font-size: 114.54545454545455%'>root(8)</a> <a href='https://syui.github.io/blog/tags/ruby' style='font-size: 105.45454545454545%'>ruby(3)</a> <a href='https://syui.github.io/blog/tags/safari' style='font-size: 101.81818181818181%'>safari(1)</a> <a href='https://syui.github.io/blog/tags/sass' style='font-size: 101.81818181818181%'>sass,(1)</a> <a href='https://syui.github.io/blog/tags/screen' style='font-size: 101.81818181818181%'>screen(1)</a> <a href='https://syui.github.io/blog/tags/security' style='font-size: 101.81818181818181%'>security(1)</a> <a href='https://syui.github.io/blog/tags/shell' style='font-size: 116.36363636363636%'>shell(9)</a> <a href='https://syui.github.io/blog/tags/shellscirpt' style='font-size: 101.81818181818181%'>shellscirpt(1)</a> <a href='https://syui.github.io/blog/tags/shellscript' style='font-size: 110.9090909090909%'>shellscript(6)</a> <a href='https://syui.github.io/blog/tags/sim' style='font-size: 103.63636363636364%'>sim(2)</a> <a href='https://syui.github.io/blog/tags/slack' style='font-size: 101.81818181818181%'>slack(1)</a> <a href='https://syui.github.io/blog/tags/slim' style='font-size: 101.81818181818181%'>slim(1)</a> <a href='https://syui.github.io/blog/tags/slim' style='font-size: 101.81818181818181%'>slim,(1)</a> <a href='https://syui.github.io/blog/tags/sns' style='font-size: 107.27272727272727%'>sns(4)</a> <a href='https://syui.github.io/blog/tags/sony' style='font-size: 101.81818181818181%'>sony(1)</a> <a href='https://syui.github.io/blog/tags/speed' style='font-size: 101.81818181818181%'>speed(1)</a> <a href='https://syui.github.io/blog/tags/spritestudio' style='font-size: 103.63636363636364%'>spritestudio(2)</a> <a href='https://syui.github.io/blog/tags/ssh' style='font-size: 101.81818181818181%'>ssh(1)</a> <a href='https://syui.github.io/blog/tags/sudo' style='font-size: 101.81818181818181%'>sudo(1)</a> <a href='https://syui.github.io/blog/tags/tag' style='font-size: 101.81818181818181%'>tag(1)</a> <a href='https://syui.github.io/blog/tags/tails' style='font-size: 101.81818181818181%'>tails(1)</a> <a href='https://syui.github.io/blog/tags/template' style='font-size: 103.63636363636364%'>template(2)</a> <a href='https://syui.github.io/blog/tags/terminal' style='font-size: 107.27272727272727%'>terminal(4)</a> <a href='https://syui.github.io/blog/tags/tips' style='font-size: 101.81818181818181%'>tips(1)</a> <a href='https://syui.github.io/blog/tags/tmux' style='font-size: 101.81818181818181%'>tmux(1)</a> <a href='https://syui.github.io/blog/tags/tool' style='font-size: 105.45454545454545%'>tool(3)</a> <a href='https://syui.github.io/blog/tags/tor' style='font-size: 112.72727272727272%'>tor(7)</a> <a href='https://syui.github.io/blog/tags/torne' style='font-size: 101.81818181818181%'>torne(1)</a> <a href='https://syui.github.io/blog/tags/touchpad' style='font-size: 103.63636363636364%'>touchpad(2)</a> <a href='https://syui.github.io/blog/tags/tty' style='font-size: 101.81818181818181%'>tty(1)</a> <a href='https://syui.github.io/blog/tags/tv' style='font-size: 101.81818181818181%'>tv(1)</a> <a href='https://syui.github.io/blog/tags/twitter' style='font-size: 101.81818181818181%'>twitter(1)</a> <a href='https://syui.github.io/blog/tags/tyranobuilder' style='font-size: 101.81818181818181%'>tyranobuilder(1)</a> <a href='https://syui.github.io/blog/tags/tyranoscript' style='font-size: 101.81818181818181%'>tyranoscript(1)</a> <a href='https://syui.github.io/blog/tags/ue4' style='font-size: 103.63636363636364%'>ue4(2)</a> <a href='https://syui.github.io/blog/tags/unity' style='font-size: 107.27272727272727%'>unity(4)</a> <a href='https://syui.github.io/blog/tags/usb' style='font-size: 101.81818181818181%'>usb(1)</a> <a href='https://syui.github.io/blog/tags/vagrant' style='font-size: 103.63636363636364%'>vagrant(2)</a> <a href='https://syui.github.io/blog/tags/video' style='font-size: 107.27272727272727%'>video(4)</a> <a href='https://syui.github.io/blog/tags/vim' style='font-size: 125.45454545454545%'>vim(14)</a> <a href='https://syui.github.io/blog/tags/vita' style='font-size: 103.63636363636364%'>vita(2)</a> <a href='https://syui.github.io/blog/tags/vmd' style='font-size: 101.81818181818181%'>vmd(1)</a> <a href='https://syui.github.io/blog/tags/vnc' style='font-size: 101.81818181818181%'>vnc(1)</a> <a href='https://syui.github.io/blog/tags/vocaloid' style='font-size: 140.0%'>vocaloid(22)</a> <a href='https://syui.github.io/blog/tags/vpn' style='font-size: 103.63636363636364%'>vpn(2)</a> <a href='https://syui.github.io/blog/tags/web' style='font-size: 107.27272727272727%'>web(4)</a> <a href='https://syui.github.io/blog/tags/web-framework' style='font-size: 101.81818181818181%'>web-framework(1)</a> <a href='https://syui.github.io/blog/tags/web-scraping' style='font-size: 101.81818181818181%'>web-scraping(1)</a> <a href='https://syui.github.io/blog/tags/webpack' style='font-size: 103.63636363636364%'>webpack(2)</a> <a href='https://syui.github.io/blog/tags/weechat' style='font-size: 101.81818181818181%'>weechat(1)</a> <a href='https://syui.github.io/blog/tags/wercker' style='font-size: 107.27272727272727%'>wercker(4)</a> <a href='https://syui.github.io/blog/tags/widget' style='font-size: 101.81818181818181%'>widget(1)</a> <a href='https://syui.github.io/blog/tags/windows' style='font-size: 105.45454545454545%'>windows(3)</a> <a href='https://syui.github.io/blog/tags/windows' style='font-size: 101.81818181818181%'>windows,(1)</a> <a href='https://syui.github.io/blog/tags/wine' style='font-size: 105.45454545454545%'>wine(3)</a> <a href='https://syui.github.io/blog/tags/winetricks' style='font-size: 101.81818181818181%'>winetricks(1)</a> <a href='https://syui.github.io/blog/tags/x' style='font-size: 101.81818181818181%'>x(1)</a> <a href='https://syui.github.io/blog/tags/xbindkeys' style='font-size: 103.63636363636364%'>xbindkeys(2)</a> <a href='https://syui.github.io/blog/tags/xdomain' style='font-size: 101.81818181818181%'>xdomain(1)</a> <a href='https://syui.github.io/blog/tags/yahoo' style='font-size: 101.81818181818181%'>yahoo(1)</a> <a href='https://syui.github.io/blog/tags/yosemite' style='font-size: 103.63636363636364%'>yosemite(2)</a> <a href='https://syui.github.io/blog/tags/zankyou' style='font-size: 101.81818181818181%'>zankyou(1)</a> <a href='https://syui.github.io/blog/tags/zaw' style='font-size: 101.81818181818181%'>zaw(1)</a> <a href='https://syui.github.io/blog/tags/zsh' style='font-size: 134.54545454545456%'>zsh(19)</a> </span>
+    </div>
+</section>
+<section>
+  <h4>About Me</h4>
+  <a href="http://syui.github.io/about/"><img src="/images/profile.png" alt="phoenix_world" align="left"/></a><a href="http://syui.github.io/about/">syui</a><br/>
+<p>ブログをはじめました。よろしくお願いします。</p>
+</section>
+
+    
+  </aside>
+  
+
+</div>
+
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <div class="footer_logo"><a href="#"><span class="icon-phoenix_logo"></span></a></div>
+<p class="text-muted credits">
+  Copyright &copy; 2014-2017 syui.<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/syui/syui.github.io/tree/theme">octoair</a></span>
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+  </body>
+</html>
+

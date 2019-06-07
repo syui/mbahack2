@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>particlejs-creatjs-wave - MBA-HACK2</title>
+  <meta name="author" content="syui">
+
+  
+  
+<meta name="google-site-verification" content="JkNswpm6rjgiXwpuzePnVWNEHTHNpZxsUdsoavMAcfU" />
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave" />
+  <link rel="canonical" href="https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="MBA-HACK2" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link rel="apple-touch-icon" href="/images/favicon.png" />
+<link href="/favicon.ico" rel="icon">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="/stylesheets/appbox.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+
+    <script src="/bower_components/jquery/dist/jquery-2.2.0.min.js "></script>
+<link href="/stylesheets/data-table.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/javascripts/jquery.githubRepoWidget.min.js"></script>
+
+  <script type="text/javascript">
+    var enforce = "mbahack2.syui.cf";
+    if ((enforce == window.location.host) && (window.location.protocol != "https:"))
+      window.location = window.location.toString().replace(/^http:/, "https:");
+  </script>
+
+
+<script>
+  $.noConflict()
+</script>
+
+  <link rel="stylesheet" href="/octicons/octicons.css">
+  <link rel="stylesheet" href="/fonts/icomoon.css">
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "https://mbahack2.syui.cf",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://mbahack2.syui.cf/search/?q={q}",
+      "query-input": "required name=q"
+    }
+  }
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73617006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+
+  <div class="container">
+    <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MBA-HACK2</a>
+    </div>
+		<div class="collapse navbar-collapse" id="navbarEexample">
+      <ul class="nav navbar-nav">
+        <li class="active">
+        <a href="/"><span class="icon-phoenix_logo"></span></a>
+        </li>
+
+        <li >
+        <a href="/blog/archives">Archives</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="/middleman/" class="dropdown-toggle" >Pages <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/middleman/">Middleman</a></li>
+          <li><a href="/gitbook/">GitBook</a></li>
+          <li><a href="http://syui__.bitbucket.org/">Hexo</a></li>
+          <li><a href="/lanyon-hugo/">Hugo</a></li>
+          <li><a href="/novel/">Novel-Normal</a></li>
+          <li><a href="/code-guide/">Novel-Material</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+        <a href="/blog/categories/tips/" class="dropdown-toggle" >Tips <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/blog/2014/04/11/macbookair">MacBook</a></li>
+          <li><a href="/blog/2014/03/26/blog-customize">Octopress</a></li>
+          <li><a href="/blog/2014/08/02/file-rename-cli">Script</a></li>
+          <li><a href="/blog/2014/06/03/iphone">iPhone</a></li>
+          <li><a href="/blog/2014/06/03/android">Nexus7</a></li>
+          <li><a href="/blog/2014/06/03/amazon">Amazon</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+        <a href="/blog/categories/tool/" class="dropdown-toggle" >Tool <b class="caret"></b></a>
+
+        <ul class="dropdown-menu">
+          <li><a href="/blog/2014/06/15/airgoogleplus/">airgoogleplus</a></li>
+          <li><a href="/blog/2014/06/12/airchrome/">airchrome.zsh</a></li>
+          <li><a href="/blog/2014/06/25/vim-plugin-airsave/">airsave.vim</a></li>
+          <li><a href="/blog/2014/06/19/airindent-dot-vim/">airindent.vim</a></li>
+          <li><a href="/blog/2014/06/16/icon/">octopress-share-button</a></li>
+          <li><a href="/middleman/blog/2014/01/01/example-article.html">middlemap-simple-tempate</a></li>
+          <li><a href="/hugo-theme-air">hugo-theme-air</a></li>
+        </ul>
+        </li>
+
+        <li ><a href="/about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        <a class="subscribe-rss" href="https://twitter.com/syui__" target="_blank" title="subscribe via Twitter">
+          <span class="visible-xs">Twitter</span>
+          <span class="hidden-xs"><span class="icon-twitter"></span></span>
+        </a>
+        </li>
+        <li>
+        <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+          <span class="visible-xs">RSS</span>
+          <span class="hidden-xs"><span class="icon-rss"></span></span>
+        </a>
+        </li>
+
+        
+      </ul>
+      
+      <form action="https://syui.github.io/search" target="_blank" class="search navbar-form navbar-right">
+        <input type="text" name="q">
+      </form>
+      
+
+
+    </div>
+  </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+
+          <div class="row">
+  <div class="page-content col-md-9">
+
+    <article class="hentry" role="article">
+	  
+      
+  <header class="page-header">
+    
+
+      <p class="meta text-muted text-uppercase">
+       <span class="meta_data_head">
+
+
+
+
+
+
+
+
+
+
+
+<time datetime="2016-06-02T00:00:00+00:00" pubdate data-updated="true"></time></span>
+        
+      </p>
+    
+    
+    <h1 class="entry-title"><a href="/blog/2016/06/02/particlejs-creatjs-wave" class="permalink">
+        particlejs-creatjs-wave
+        
+</a>
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix">
+    <p><img src="/images/more.png" alt="phoenix-power" align="left">波のエフェクトを作成する<!--more--><br clear="all"></p>
+
+<p><a href="https://github.com/ics-creative/ParticleJS">particle.js</a>と<a href="http://www.createjs.com/">creatjs</a>を使って波のエフェクトを作成できます。前者が星や泡みたいなエフェクトで後者が線を表現する感じですね。これを組み合わせることで、<a href="https://ics.media">https://ics.media</a>のトップページにあるエフェクトを表現できます。</p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/particlejs-creatjs-wave.png" alt="" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone https://github.com/ics-creative/ParticleJS
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>ParticleJS/examples
+</span><span class='line'><span class="nv">$ </span>open demo.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ブラウザからも値を調整できます。</p>
+
+<p><a href="http://ics-web.jp/projects/particle-develop/">http://ics-web.jp/projects/particle-develop/</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone https://github.com/ics-creative/151124_createjs_waves
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd  </span>151124_createjs_waves/examples
+</span><span class='line'><span class="nv">$ </span>open 5_finish.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>素晴らしいですね。解説は以下の記事で詳しくなされています。</p>
+
+<p><a href="https://ics.media/entry/10141">https://ics.media/entry/10141</a></p>
+
+</div>
+
+
+      <footer>
+
+        <p class="meta text-muted">
+          
+  
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </p>
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tips/'>tips</a>
+  
+</span>
+
+
+        <span class="octicon octicon-chevron-right" style="font-size:20px;"></span> 
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/creatjs/'>creatjs</a>, <a class='tag' href='/blog/tags/css/'>css</a>, <a class='tag' href='/blog/tags/js/'>js</a>, <a class='tag' href='/blog/tags/particlejs/'>particlejs</a>
+  
+</span>
+
+
+         
+          
+<div class="share_button_syui">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave&title=particlejs-creatjs-wave" target="_blank"><span class="hatena-name"><span class="icon-hatena"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;"
+>B!</span> Bookmark </span></a>
+  <a href="https://twitter.com/share?url=https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave&text=particlejs-creatjs-wave&via=syui__" target="_blank"><span class="twitter-name"><span class="icon-twitter"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> Tweet </span></a>
+  <a href="https://plus.google.com/share?url=https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave" target="_blank"><span class="googleplus-name"><span class="icon-google-plus"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> +1 </span></a>
+  <a href="http://feedly.com/i/subscription/feed/https://mbahack2.syui.cf/atom.xml" target="_blank"><span class="feedly-name"><span class="icon-rss"
+style="float: left;
+font-size: 20px;
+padding-left: 5px;
+color: #fff;"
+></span> Feedly </span></a>
+</div>
+
+
+
+               
+
+
+
+        
+
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/05/25/spritestudio-sample" title="Previous Post: spritestudio-sample"><span class="octicon octicon-chevron-left" style="font-size:50px"></span></a></li>
+            
+
+            <li><a href="https://mbahack2.syui.cf"><span class="icon-phoenix_logo" style="font-size:50px"></span></a></li>
+            
+            <li class="next"><a href="/blog/2016/06/03/shelljs-nodecli-eslint" title="Next Post: shelljs-nodecli-eslint"><span class="octicon octicon-chevron-right" style="font-size:50px"></span></a></li>
+            
+          </ul>
+        
+
+   
+      <section>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7486046788071230"
+     data-ad-slot="5761768700"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script type="text/javascript">
+   talaria.init({REPOSITORY_NAME: 'syui.github.io-comment',
+                 GITHUB_USERNAME: 'mba-hack'});
+  </script>
+
+        <div id="disqus_thread" aria-live="polite"></div>
+      </section>
+    
+
+      </footer>
+    </article>
+  </div>
+  
+  <aside class="sidebar col-md-3">
+    
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- test3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7486046788071230"
+     data-ad-slot="5761768700"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Recent Posts</div>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2017/01/22/wercker-deploy">wercker-docker-deploy</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/09/elm-headley-server">elm-headley-server</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/08/elm-html-virtual-dom">elm-html-virtual-dom</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/07/riot-webpack">riot-webpack-superstatic</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/06/hugo-search-lunrjs">hugo-search-lunrjs-grunt</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/05/hugo-archives">hugo-archives</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/04/calheatmap-jquery-ajax">calheatmap-jquery-ajax</a>
+    
+    <a class="list-group-item " href="/blog/2016/06/03/shelljs-nodecli-eslint">shelljs-nodecli-eslint</a>
+    
+    <a class="list-group-item active" href="/blog/2016/06/02/particlejs-creatjs-wave">particlejs-creatjs-wave</a>
+    
+    <a class="list-group-item " href="/blog/2016/05/25/spritestudio-sample">spritestudio-sample</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Qiita</div>
+  </div>
+  <a class="qiita-timeline" href="https://qiita.com/users/syui" data-qiita-username="syui">syui</a><script src="/javascripts/qiita.js"></script>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Categories</div>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/blog/index.html">
+        <span class="badge">47</span>
+        blog
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/tips/index.html">
+        <span class="badge">17</span>
+        tips
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/hack/index.html">
+        <span class="badge">141</span>
+        hack
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/private/index.html">
+        <span class="badge">47</span>
+        private
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/music/index.html">
+        <span class="badge">23</span>
+        music
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/anime/index.html">
+        <span class="badge">13</span>
+        anime
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/comic/index.html">
+        <span class="badge">4</span>
+        comic
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/lang/index.html">
+        <span class="badge">3</span>
+        lang
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/security/index.html">
+        <span class="badge">1</span>
+        security
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/game/index.html">
+        <span class="badge">5</span>
+        game
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Tag Cloud</div>
+  </div>
+
+    <div class="panel-tag-cloud">
+    <span id="tag-cloud"><a href='https://syui.github.io/blog/tags/0day' style='font-size: 101.81818181818181%'>0day(1)</a> <a href='https://syui.github.io/blog/tags/account' style='font-size: 101.81818181818181%'>account(1)</a> <a href='https://syui.github.io/blog/tags/aircrack-ng' style='font-size: 101.81818181818181%'>aircrack-ng(1)</a> <a href='https://syui.github.io/blog/tags/ajax' style='font-size: 101.81818181818181%'>ajax(1)</a> <a href='https://syui.github.io/blog/tags/aldnoah' style='font-size: 101.81818181818181%'>aldnoah(1)</a> <a href='https://syui.github.io/blog/tags/amazon' style='font-size: 107.27272727272727%'>amazon(4)</a> <a href='https://syui.github.io/blog/tags/android' style='font-size: 130.9090909090909%'>android(17)</a> <a href='https://syui.github.io/blog/tags/android' style='font-size: 103.63636363636364%'>android,(2)</a> <a href='https://syui.github.io/blog/tags/angular' style='font-size: 101.81818181818181%'>angular(1)</a> <a href='https://syui.github.io/blog/tags/anime' style='font-size: 112.72727272727272%'>anime(7)</a> <a href='https://syui.github.io/blog/tags/api' style='font-size: 103.63636363636364%'>api(2)</a> <a href='https://syui.github.io/blog/tags/apple' style='font-size: 105.45454545454545%'>apple(3)</a> <a href='https://syui.github.io/blog/tags/applescript' style='font-size: 110.9090909090909%'>applescript(6)</a> <a href='https://syui.github.io/blog/tags/application' style='font-size: 105.45454545454545%'>application(3)</a> <a href='https://syui.github.io/blog/tags/arch' style='font-size: 156.36363636363637%'>arch(31)</a> <a href='https://syui.github.io/blog/tags/archlinux' style='font-size: 127.27272727272728%'>archlinux(15)</a> <a href='https://syui.github.io/blog/tags/au' style='font-size: 101.81818181818181%'>au(1)</a> <a href='https://syui.github.io/blog/tags/audio' style='font-size: 105.45454545454545%'>audio(3)</a> <a href='https://syui.github.io/blog/tags/awesome' style='font-size: 101.81818181818181%'>awesome(1)</a> <a href='https://syui.github.io/blog/tags/bag' style='font-size: 103.63636363636364%'>bag(2)</a> <a href='https://syui.github.io/blog/tags/battery' style='font-size: 103.63636363636364%'>battery(2)</a> <a href='https://syui.github.io/blog/tags/bgm' style='font-size: 101.81818181818181%'>bgm(1)</a> <a href='https://syui.github.io/blog/tags/bitbucket' style='font-size: 101.81818181818181%'>bitbucket(1)</a> <a href='https://syui.github.io/blog/tags/blackarch' style='font-size: 101.81818181818181%'>blackarch(1)</a> <a href='https://syui.github.io/blog/tags/blackbullet' style='font-size: 101.81818181818181%'>black・bullet(1)</a> <a href='https://syui.github.io/blog/tags/blog' style='font-size: 101.81818181818181%'>blog(1)</a> <a href='https://syui.github.io/blog/tags/blogger' style='font-size: 101.81818181818181%'>blogger(1)</a> <a href='https://syui.github.io/blog/tags/bluetooth' style='font-size: 103.63636363636364%'>bluetooth(2)</a> <a href='https://syui.github.io/blog/tags/book' style='font-size: 103.63636363636364%'>book(2)</a> <a href='https://syui.github.io/blog/tags/bootstrap' style='font-size: 105.45454545454545%'>bootstrap(3)</a> <a href='https://syui.github.io/blog/tags/bower' style='font-size: 103.63636363636364%'>bower(2)</a> <a href='https://syui.github.io/blog/tags/build' style='font-size: 101.81818181818181%'>build(1)</a> <a href='https://syui.github.io/blog/tags/button' style='font-size: 101.81818181818181%'>button(1)</a> <a href='https://syui.github.io/blog/tags/cal-heatmap' style='font-size: 101.81818181818181%'>cal-heatmap(1)</a> <a href='https://syui.github.io/blog/tags/calendar' style='font-size: 101.81818181818181%'>calendar(1)</a> <a href='https://syui.github.io/blog/tags/cdr' style='font-size: 101.81818181818181%'>cdr(1)</a> <a href='https://syui.github.io/blog/tags/chat' style='font-size: 101.81818181818181%'>chat(1)</a> <a href='https://syui.github.io/blog/tags/chrome' style='font-size: 107.27272727272727%'>chrome(4)</a> <a href='https://syui.github.io/blog/tags/ci' style='font-size: 101.81818181818181%'>ci(1)</a> <a href='https://syui.github.io/blog/tags/cli' style='font-size: 109.0909090909091%'>cli(5)</a> <a href='https://syui.github.io/blog/tags/clipboard' style='font-size: 101.81818181818181%'>clipboard(1)</a> <a href='https://syui.github.io/blog/tags/comic' style='font-size: 105.45454545454545%'>comic(3)</a> <a href='https://syui.github.io/blog/tags/command' style='font-size: 101.81818181818181%'>command(1)</a> <a href='https://syui.github.io/blog/tags/conan' style='font-size: 101.81818181818181%'>conan(1)</a> <a href='https://syui.github.io/blog/tags/coreos' style='font-size: 103.63636363636364%'>coreos(2)</a> <a href='https://syui.github.io/blog/tags/creatjs' style='font-size: 101.81818181818181%'>creatjs(1)</a> <a href='https://syui.github.io/blog/tags/css' style='font-size: 121.81818181818181%'>css(12)</a> <a href='https://syui.github.io/blog/tags/dns' style='font-size: 103.63636363636364%'>dns(2)</a> <a href='https://syui.github.io/blog/tags/docker' style='font-size: 110.9090909090909%'>docker(6)</a> <a href='https://syui.github.io/blog/tags/docomo' style='font-size: 103.63636363636364%'>docomo(2)</a> <a href='https://syui.github.io/blog/tags/domain' style='font-size: 103.63636363636364%'>domain(2)</a> <a href='https://syui.github.io/blog/tags/dotfile' style='font-size: 101.81818181818181%'>dotfile(1)</a> <a href='https://syui.github.io/blog/tags/drupal' style='font-size: 101.81818181818181%'>drupal(1)</a> <a href='https://syui.github.io/blog/tags/dtm' style='font-size: 101.81818181818181%'>dtm(1)</a> <a href='https://syui.github.io/blog/tags/editor' style='font-size: 103.63636363636364%'>editor(2)</a> <a href='https://syui.github.io/blog/tags/elixir' style='font-size: 103.63636363636364%'>elixir(2)</a> <a href='https://syui.github.io/blog/tags/elm' style='font-size: 103.63636363636364%'>elm(2)</a> <a href='https://syui.github.io/blog/tags/error' style='font-size: 101.81818181818181%'>error(1)</a> <a href='https://syui.github.io/blog/tags/eslint' style='font-size: 101.81818181818181%'>eslint(1)</a> <a href='https://syui.github.io/blog/tags/feedly' style='font-size: 101.81818181818181%'>feedly(1)</a> <a href='https://syui.github.io/blog/tags/ffxiv' style='font-size: 101.81818181818181%'>ffxiv(1)</a> <a href='https://syui.github.io/blog/tags/filemanager' style='font-size: 101.81818181818181%'>filemanager(1)</a> <a href='https://syui.github.io/blog/tags/flux' style='font-size: 101.81818181818181%'>flux(1)</a> <a href='https://syui.github.io/blog/tags/font' style='font-size: 101.81818181818181%'>font(1)</a> <a href='https://syui.github.io/blog/tags/fuctory-unlock' style='font-size: 101.81818181818181%'>fuctory-unlock(1)</a> <a href='https://syui.github.io/blog/tags/game' style='font-size: 114.54545454545455%'>game(8)</a> <a href='https://syui.github.io/blog/tags/gist' style='font-size: 101.81818181818181%'>gist(1)</a> <a href='https://syui.github.io/blog/tags/git' style='font-size: 112.72727272727272%'>git(7)</a> <a href='https://syui.github.io/blog/tags/github' style='font-size: 160.0%'>github(33)</a> <a href='https://syui.github.io/blog/tags/gitlab' style='font-size: 103.63636363636364%'>gitlab(2)</a> <a href='https://syui.github.io/blog/tags/gitlab-ci' style='font-size: 101.81818181818181%'>gitlab-ci(1)</a> <a href='https://syui.github.io/blog/tags/go' style='font-size: 101.81818181818181%'>go(1)</a> <a href='https://syui.github.io/blog/tags/golang' style='font-size: 110.9090909090909%'>golang(6)</a> <a href='https://syui.github.io/blog/tags/google' style='font-size: 112.72727272727272%'>google(7)</a> <a href='https://syui.github.io/blog/tags/google-api' style='font-size: 101.81818181818181%'>google-api(1)</a> <a href='https://syui.github.io/blog/tags/grunt' style='font-size: 101.81818181818181%'>grunt(1)</a> <a href='https://syui.github.io/blog/tags/hack' style='font-size: 101.81818181818181%'>hack(1)</a> <a href='https://syui.github.io/blog/tags/hatena' style='font-size: 101.81818181818181%'>hatena(1)</a> <a href='https://syui.github.io/blog/tags/hexo' style='font-size: 101.81818181818181%'>hexo(1)</a> <a href='https://syui.github.io/blog/tags/html' style='font-size: 120.0%'>html(11)</a> <a href='https://syui.github.io/blog/tags/hubot' style='font-size: 101.81818181818181%'>hubot(1)</a> <a href='https://syui.github.io/blog/tags/hugo' style='font-size: 107.27272727272727%'>hugo(4)</a> <a href='https://syui.github.io/blog/tags/i3' style='font-size: 101.81818181818181%'>i3(1)</a> <a href='https://syui.github.io/blog/tags/icon' style='font-size: 103.63636363636364%'>icon(2)</a> <a href='https://syui.github.io/blog/tags/iconfont' style='font-size: 101.81818181818181%'>iconfont(1)</a> <a href='https://syui.github.io/blog/tags/iesd' style='font-size: 101.81818181818181%'>iesd(1)</a> <a href='https://syui.github.io/blog/tags/iij' style='font-size: 101.81818181818181%'>iij(1)</a> <a href='https://syui.github.io/blog/tags/illust' style='font-size: 101.81818181818181%'>illust(1)</a> <a href='https://syui.github.io/blog/tags/imagemagick' style='font-size: 101.81818181818181%'>imagemagick(1)</a> <a href='https://syui.github.io/blog/tags/imotyo' style='font-size: 101.81818181818181%'>imotyo(1)</a> <a href='https://syui.github.io/blog/tags/indent' style='font-size: 101.81818181818181%'>indent(1)</a> <a href='https://syui.github.io/blog/tags/ios' style='font-size: 107.27272727272727%'>ios(4)</a> <a href='https://syui.github.io/blog/tags/iphone' style='font-size: 109.0909090909091%'>iphone(5)</a> <a href='https://syui.github.io/blog/tags/irc' style='font-size: 101.81818181818181%'>irc(1)</a> <a href='https://syui.github.io/blog/tags/items' style='font-size: 101.81818181818181%'>items(1)</a> <a href='https://syui.github.io/blog/tags/javascript' style='font-size: 107.27272727272727%'>javascript(4)</a> <a href='https://syui.github.io/blog/tags/jekyll' style='font-size: 107.27272727272727%'>jekyll(4)</a> <a href='https://syui.github.io/blog/tags/jockerscript' style='font-size: 101.81818181818181%'>jockerscript(1)</a> <a href='https://syui.github.io/blog/tags/jquery' style='font-size: 103.63636363636364%'>jquery(2)</a> <a href='https://syui.github.io/blog/tags/js' style='font-size: 103.63636363636364%'>js(2)</a> <a href='https://syui.github.io/blog/tags/json' style='font-size: 103.63636363636364%'>json(2)</a> <a href='https://syui.github.io/blog/tags/julius' style='font-size: 101.81818181818181%'>julius(1)</a> <a href='https://syui.github.io/blog/tags/kail' style='font-size: 101.81818181818181%'>kail(1)</a> <a href='https://syui.github.io/blog/tags/karabiner' style='font-size: 101.81818181818181%'>karabiner(1)</a> <a href='https://syui.github.io/blog/tags/libnotify' style='font-size: 101.81818181818181%'>libnotify(1)</a> <a href='https://syui.github.io/blog/tags/life' style='font-size: 101.81818181818181%'>life(1)</a> <a href='https://syui.github.io/blog/tags/lingr' style='font-size: 101.81818181818181%'>lingr(1)</a> <a href='https://syui.github.io/blog/tags/linux' style='font-size: 141.8181818181818%'>linux(23)</a> <a href='https://syui.github.io/blog/tags/live2d' style='font-size: 101.81818181818181%'>live2d(1)</a> <a href='https://syui.github.io/blog/tags/lunrjs' style='font-size: 101.81818181818181%'>lunrjs(1)</a> <a href='https://syui.github.io/blog/tags/mac' style='font-size: 152.72727272727272%'>mac(29)</a> <a href='https://syui.github.io/blog/tags/macbook' style='font-size: 109.0909090909091%'>macbook(5)</a> <a href='https://syui.github.io/blog/tags/manjaro' style='font-size: 107.27272727272727%'>manjaro(4)</a> <a href='https://syui.github.io/blog/tags/markdown' style='font-size: 101.81818181818181%'>markdown(1)</a> <a href='https://syui.github.io/blog/tags/mavericks' style='font-size: 101.81818181818181%'>mavericks(1)</a> <a href='https://syui.github.io/blog/tags/metatrader' style='font-size: 101.81818181818181%'>metatrader(1)</a> <a href='https://syui.github.io/blog/tags/metatrader4' style='font-size: 101.81818181818181%'>metatrader4(1)</a> <a href='https://syui.github.io/blog/tags/middleman' style='font-size: 116.36363636363636%'>middleman(9)</a> <a href='https://syui.github.io/blog/tags/middleman' style='font-size: 101.81818181818181%'>middleman,(1)</a> <a href='https://syui.github.io/blog/tags/miku' style='font-size: 114.54545454545455%'>miku(8)</a> <a href='https://syui.github.io/blog/tags/mithril' style='font-size: 101.81818181818181%'>mithril(1)</a> <a href='https://syui.github.io/blog/tags/mmd' style='font-size: 107.27272727272727%'>mmd(4)</a> <a href='https://syui.github.io/blog/tags/mmm' style='font-size: 103.63636363636364%'>mmm(2)</a> <a href='https://syui.github.io/blog/tags/mp4' style='font-size: 101.81818181818181%'>mp4(1)</a> <a href='https://syui.github.io/blog/tags/mplayer' style='font-size: 101.81818181818181%'>mplayer(1)</a> <a href='https://syui.github.io/blog/tags/msys' style='font-size: 101.81818181818181%'>msys(1)</a> <a href='https://syui.github.io/blog/tags/music' style='font-size: 101.81818181818181%'>music(1)</a> <a href='https://syui.github.io/blog/tags/nasne' style='font-size: 101.81818181818181%'>nasne(1)</a> <a href='https://syui.github.io/blog/tags/network' style='font-size: 101.81818181818181%'>network(1)</a> <a href='https://syui.github.io/blog/tags/nexus' style='font-size: 101.81818181818181%'>nexus(1)</a> <a href='https://syui.github.io/blog/tags/node' style='font-size: 105.45454545454545%'>node(3)</a> <a href='https://syui.github.io/blog/tags/node-dot-js' style='font-size: 103.63636363636364%'>node.js(2)</a> <a href='https://syui.github.io/blog/tags/nodejs' style='font-size: 101.81818181818181%'>nodejs(1)</a> <a href='https://syui.github.io/blog/tags/notify' style='font-size: 101.81818181818181%'>notify(1)</a> <a href='https://syui.github.io/blog/tags/novel' style='font-size: 101.81818181818181%'>novel(1)</a> <a href='https://syui.github.io/blog/tags/octopress' style='font-size: 160.0%'>octopress(33)</a> <a href='https://syui.github.io/blog/tags/openssh' style='font-size: 101.81818181818181%'>openssh(1)</a> <a href='https://syui.github.io/blog/tags/package' style='font-size: 101.81818181818181%'>package(1)</a> <a href='https://syui.github.io/blog/tags/pacman' style='font-size: 101.81818181818181%'>pacman(1)</a> <a href='https://syui.github.io/blog/tags/pantheon' style='font-size: 101.81818181818181%'>pantheon(1)</a> <a href='https://syui.github.io/blog/tags/particlejs' style='font-size: 101.81818181818181%'>particlejs(1)</a> <a href='https://syui.github.io/blog/tags/particles' style='font-size: 101.81818181818181%'>particles(1)</a> <a href='https://syui.github.io/blog/tags/peco' style='font-size: 101.81818181818181%'>peco(1)</a> <a href='https://syui.github.io/blog/tags/phoenix' style='font-size: 103.63636363636364%'>phoenix(2)</a> <a href='https://syui.github.io/blog/tags/photo' style='font-size: 101.81818181818181%'>photo(1)</a> <a href='https://syui.github.io/blog/tags/plugin' style='font-size: 105.45454545454545%'>plugin(3)</a> <a href='https://syui.github.io/blog/tags/powershell' style='font-size: 101.81818181818181%'>powershell(1)</a> <a href='https://syui.github.io/blog/tags/private' style='font-size: 105.45454545454545%'>private(3)</a> <a href='https://syui.github.io/blog/tags/privoxy' style='font-size: 101.81818181818181%'>privoxy(1)</a> <a href='https://syui.github.io/blog/tags/proxy' style='font-size: 105.45454545454545%'>proxy(3)</a> <a href='https://syui.github.io/blog/tags/psp' style='font-size: 101.81818181818181%'>psp(1)</a> <a href='https://syui.github.io/blog/tags/python' style='font-size: 105.45454545454545%'>python(3)</a> <a href='https://syui.github.io/blog/tags/qiita' style='font-size: 101.81818181818181%'>qiita(1)</a> <a href='https://syui.github.io/blog/tags/rails' style='font-size: 101.81818181818181%'>rails(1)</a> <a href='https://syui.github.io/blog/tags/react' style='font-size: 101.81818181818181%'>react(1)</a> <a href='https://syui.github.io/blog/tags/react' style='font-size: 101.81818181818181%'>React(1)</a> <a href='https://syui.github.io/blog/tags/redshift' style='font-size: 101.81818181818181%'>redshift(1)</a> <a href='https://syui.github.io/blog/tags/riot' style='font-size: 101.81818181818181%'>riot(1)</a> <a href='https://syui.github.io/blog/tags/rocket' style='font-size: 101.81818181818181%'>rocket(1)</a> <a href='https://syui.github.io/blog/tags/root' style='font-size: 114.54545454545455%'>root(8)</a> <a href='https://syui.github.io/blog/tags/ruby' style='font-size: 105.45454545454545%'>ruby(3)</a> <a href='https://syui.github.io/blog/tags/safari' style='font-size: 101.81818181818181%'>safari(1)</a> <a href='https://syui.github.io/blog/tags/sass' style='font-size: 101.81818181818181%'>sass,(1)</a> <a href='https://syui.github.io/blog/tags/screen' style='font-size: 101.81818181818181%'>screen(1)</a> <a href='https://syui.github.io/blog/tags/security' style='font-size: 101.81818181818181%'>security(1)</a> <a href='https://syui.github.io/blog/tags/shell' style='font-size: 116.36363636363636%'>shell(9)</a> <a href='https://syui.github.io/blog/tags/shellscirpt' style='font-size: 101.81818181818181%'>shellscirpt(1)</a> <a href='https://syui.github.io/blog/tags/shellscript' style='font-size: 110.9090909090909%'>shellscript(6)</a> <a href='https://syui.github.io/blog/tags/sim' style='font-size: 103.63636363636364%'>sim(2)</a> <a href='https://syui.github.io/blog/tags/slack' style='font-size: 101.81818181818181%'>slack(1)</a> <a href='https://syui.github.io/blog/tags/slim' style='font-size: 101.81818181818181%'>slim(1)</a> <a href='https://syui.github.io/blog/tags/slim' style='font-size: 101.81818181818181%'>slim,(1)</a> <a href='https://syui.github.io/blog/tags/sns' style='font-size: 107.27272727272727%'>sns(4)</a> <a href='https://syui.github.io/blog/tags/sony' style='font-size: 101.81818181818181%'>sony(1)</a> <a href='https://syui.github.io/blog/tags/speed' style='font-size: 101.81818181818181%'>speed(1)</a> <a href='https://syui.github.io/blog/tags/spritestudio' style='font-size: 103.63636363636364%'>spritestudio(2)</a> <a href='https://syui.github.io/blog/tags/ssh' style='font-size: 101.81818181818181%'>ssh(1)</a> <a href='https://syui.github.io/blog/tags/sudo' style='font-size: 101.81818181818181%'>sudo(1)</a> <a href='https://syui.github.io/blog/tags/tag' style='font-size: 101.81818181818181%'>tag(1)</a> <a href='https://syui.github.io/blog/tags/tails' style='font-size: 101.81818181818181%'>tails(1)</a> <a href='https://syui.github.io/blog/tags/template' style='font-size: 103.63636363636364%'>template(2)</a> <a href='https://syui.github.io/blog/tags/terminal' style='font-size: 107.27272727272727%'>terminal(4)</a> <a href='https://syui.github.io/blog/tags/tips' style='font-size: 101.81818181818181%'>tips(1)</a> <a href='https://syui.github.io/blog/tags/tmux' style='font-size: 101.81818181818181%'>tmux(1)</a> <a href='https://syui.github.io/blog/tags/tool' style='font-size: 105.45454545454545%'>tool(3)</a> <a href='https://syui.github.io/blog/tags/tor' style='font-size: 112.72727272727272%'>tor(7)</a> <a href='https://syui.github.io/blog/tags/torne' style='font-size: 101.81818181818181%'>torne(1)</a> <a href='https://syui.github.io/blog/tags/touchpad' style='font-size: 103.63636363636364%'>touchpad(2)</a> <a href='https://syui.github.io/blog/tags/tty' style='font-size: 101.81818181818181%'>tty(1)</a> <a href='https://syui.github.io/blog/tags/tv' style='font-size: 101.81818181818181%'>tv(1)</a> <a href='https://syui.github.io/blog/tags/twitter' style='font-size: 101.81818181818181%'>twitter(1)</a> <a href='https://syui.github.io/blog/tags/tyranobuilder' style='font-size: 101.81818181818181%'>tyranobuilder(1)</a> <a href='https://syui.github.io/blog/tags/tyranoscript' style='font-size: 101.81818181818181%'>tyranoscript(1)</a> <a href='https://syui.github.io/blog/tags/ue4' style='font-size: 103.63636363636364%'>ue4(2)</a> <a href='https://syui.github.io/blog/tags/unity' style='font-size: 107.27272727272727%'>unity(4)</a> <a href='https://syui.github.io/blog/tags/usb' style='font-size: 101.81818181818181%'>usb(1)</a> <a href='https://syui.github.io/blog/tags/vagrant' style='font-size: 103.63636363636364%'>vagrant(2)</a> <a href='https://syui.github.io/blog/tags/video' style='font-size: 107.27272727272727%'>video(4)</a> <a href='https://syui.github.io/blog/tags/vim' style='font-size: 125.45454545454545%'>vim(14)</a> <a href='https://syui.github.io/blog/tags/vita' style='font-size: 103.63636363636364%'>vita(2)</a> <a href='https://syui.github.io/blog/tags/vmd' style='font-size: 101.81818181818181%'>vmd(1)</a> <a href='https://syui.github.io/blog/tags/vnc' style='font-size: 101.81818181818181%'>vnc(1)</a> <a href='https://syui.github.io/blog/tags/vocaloid' style='font-size: 140.0%'>vocaloid(22)</a> <a href='https://syui.github.io/blog/tags/vpn' style='font-size: 103.63636363636364%'>vpn(2)</a> <a href='https://syui.github.io/blog/tags/web' style='font-size: 107.27272727272727%'>web(4)</a> <a href='https://syui.github.io/blog/tags/web-framework' style='font-size: 101.81818181818181%'>web-framework(1)</a> <a href='https://syui.github.io/blog/tags/web-scraping' style='font-size: 101.81818181818181%'>web-scraping(1)</a> <a href='https://syui.github.io/blog/tags/webpack' style='font-size: 103.63636363636364%'>webpack(2)</a> <a href='https://syui.github.io/blog/tags/weechat' style='font-size: 101.81818181818181%'>weechat(1)</a> <a href='https://syui.github.io/blog/tags/wercker' style='font-size: 107.27272727272727%'>wercker(4)</a> <a href='https://syui.github.io/blog/tags/widget' style='font-size: 101.81818181818181%'>widget(1)</a> <a href='https://syui.github.io/blog/tags/windows' style='font-size: 105.45454545454545%'>windows(3)</a> <a href='https://syui.github.io/blog/tags/windows' style='font-size: 101.81818181818181%'>windows,(1)</a> <a href='https://syui.github.io/blog/tags/wine' style='font-size: 105.45454545454545%'>wine(3)</a> <a href='https://syui.github.io/blog/tags/winetricks' style='font-size: 101.81818181818181%'>winetricks(1)</a> <a href='https://syui.github.io/blog/tags/x' style='font-size: 101.81818181818181%'>x(1)</a> <a href='https://syui.github.io/blog/tags/xbindkeys' style='font-size: 103.63636363636364%'>xbindkeys(2)</a> <a href='https://syui.github.io/blog/tags/xdomain' style='font-size: 101.81818181818181%'>xdomain(1)</a> <a href='https://syui.github.io/blog/tags/yahoo' style='font-size: 101.81818181818181%'>yahoo(1)</a> <a href='https://syui.github.io/blog/tags/yosemite' style='font-size: 103.63636363636364%'>yosemite(2)</a> <a href='https://syui.github.io/blog/tags/zankyou' style='font-size: 101.81818181818181%'>zankyou(1)</a> <a href='https://syui.github.io/blog/tags/zaw' style='font-size: 101.81818181818181%'>zaw(1)</a> <a href='https://syui.github.io/blog/tags/zsh' style='font-size: 134.54545454545456%'>zsh(19)</a> </span>
+    </div>
+</section>
+<section>
+  <h4>About Me</h4>
+  <a href="http://syui.github.io/about/"><img src="/images/profile.png" alt="phoenix_world" align="left"/></a><a href="http://syui.github.io/about/">syui</a><br/>
+<p>ブログをはじめました。よろしくお願いします。</p>
+</section>
+
+    
+  </aside>
+  
+
+</div>
+
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <div class="footer_logo"><a href="#"><span class="icon-phoenix_logo"></span></a></div>
+<p class="text-muted credits">
+  Copyright &copy; 2014-2017 syui.<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/syui/syui.github.io/tree/theme">octoair</a></span>
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+  </body>
+</html>
+

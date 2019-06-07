@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[MBA-HACK2]]></title>
+  <link href="https://mbahack2.syui.cf/atom.xml" rel="self"/>
+  <link href="https://mbahack2.syui.cf/"/>
+  <updated>2017-05-24T00:40:01+00:00</updated>
+  <id>https://mbahack2.syui.cf/</id>
+  <author>
+    <name><![CDATA[syui]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[wercker-docker-deploy]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2017/01/22/wercker-deploy"/>
+    <updated>2017-01-22T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2017/01/22/wercker-deploy</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Werckerが色々と変わってたので対応しました。そういえば、このブログなどはWercker(Classic)を使用していたので、それをDokcerに変更して使うことになります。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[elm-headley-server]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/09/elm-headley-server"/>
+    <updated>2016-06-09T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/09/elm-headley-server</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left" width="100" height="100">PaaSからデータベースサーバーを使いOAuth認証ページを作成する方法]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[elm-html-virtual-dom]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/08/elm-html-virtual-dom"/>
+    <updated>2016-06-08T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/08/elm-html-virtual-dom</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left" width="100" height="100">Elmでの仮想DOMを体験する。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[riot-webpack-superstatic]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/07/riot-webpack"/>
+    <updated>2016-06-07T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/07/riot-webpack</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left" width="100" height="100">React, Polymerなどと比較されるRiotを使ってみた。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hugo-search-lunrjs-grunt]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/06/hugo-search-lunrjs"/>
+    <updated>2016-06-06T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/06/hugo-search-lunrjs</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Hugoの検索システムを構築する方法]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hugo-archives]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/05/hugo-archives"/>
+    <updated>2016-06-05T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/05/hugo-archives</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Hugoにアーカイブページを作成する方法]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[calheatmap-jquery-ajax]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/04/calheatmap-jquery-ajax"/>
+    <updated>2016-06-04T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/04/calheatmap-jquery-ajax</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">GitHubにあるような芝(カレンダー)をサイトに設置する方法。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[shelljs-nodecli-eslint]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/03/shelljs-nodecli-eslint"/>
+    <updated>2016-06-03T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/03/shelljs-nodecli-eslint</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Node.jsの開発環境]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[particlejs-creatjs-wave]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave"/>
+    <updated>2016-06-02T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/02/particlejs-creatjs-wave</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">波のエフェクトを作成する]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[spritestudio-sample]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/25/spritestudio-sample"/>
+    <updated>2016-05-25T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/25/spritestudio-sample</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">SpriteStudioの基本的な使い方]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[spritestudio-droid]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/24/spritestudio-undroid"/>
+    <updated>2016-05-24T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/24/spritestudio-undroid</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">SpriteStudioでドロイドくんを動かしてみました。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mac-imovie]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/22/mac-imovie"/>
+    <updated>2016-05-22T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/22/mac-imovie</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">動画編集アプリは、Mac標準アプリのiMovieが最高でした。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ue4-mmd-miku-motion]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/21/ue4-mmd-miku-motion"/>
+    <updated>2016-05-21T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/21/ue4-mmd-miku-motion</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">UE4でMMDモデルを動かします。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[music-make-vocaloid]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/20/music-make-vocaloid"/>
+    <updated>2016-05-20T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/20/music-make-vocaloid</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">イチから始める作曲入門です。今回はBGMから歌詞まで全部自分で作ります。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ue4-mmd-miku]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/19/ue4-mmd-miku"/>
+    <updated>2016-05-19T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/19/ue4-mmd-miku</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">UE4を使ってMMDの初音ミクを表示してみました。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[windows-busybox]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/17/windows-busybox"/>
+    <updated>2016-05-17T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/17/windows-busybox</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Windowsで使っているツールまとめ。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[web-front-end]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/16/web-front-end"/>
+    <updated>2016-05-16T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/16/web-front-end</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">Webフロントエンドの情報をまとめてみます。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[gitlab-blog]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/15/blog-update-q"/>
+    <updated>2016-05-15T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/15/blog-update-q</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">ブログを移転するかもしれません。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[react-webpack]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/14/react-webpack"/>
+    <updated>2016-05-14T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/14/react-webpack</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">ReactとWebpackが便利です。]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[gitlab-pages]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/05/10/gitlab-pages"/>
+    <updated>2016-05-10T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/05/10/gitlab-pages</id>
+    <content type="html"><![CDATA[<p><img src="https://mbahack2.syui.cf/images/more.png" alt="phoenix-power" align="left">これからGitHubを使おうとしている人は、GitLabのほうがよいかもしれないという話]]></content>
+  </entry>
+  
+</feed>

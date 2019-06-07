@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: security | MBA-HACK2]]></title>
+  <link href="https://mbahack2.syui.cf/blog/categories/security/atom.xml" rel="self"/>
+  <link href="https://mbahack2.syui.cf/"/>
+  <updated>2017-05-24T00:40:01+00:00</updated>
+  <id>https://mbahack2.syui.cf/</id>
+  <author>
+    <name><![CDATA[syui]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[google-authenticator-yahoo]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2015/11/22/google-authenticator-yahoo"/>
+    <updated>2015-11-22T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2015/11/22/google-authenticator-yahoo</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">Google認証システムが便利。<!--more--><br clear="all"></p>
+
+<h2>Google Authenticator</h2>
+
+<p><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a></p>
+
+<p><a href="https://itunes.apple.com/jp/app/google-authenticator/id388497605">iOS</a></p>
+
+<h2>Yahooの2段階認証</h2>
+
+<p>Yahooは<code>Google Authenticator</code>が対応していないQRコードを使用しますので、そのままでは、Yahooが発行したQRコードで認証コードを追加できません。したがって、アカウントをURLの形にして追加しなければなりません。</p>
+
+<p>QRコードから読み取れるURLは、<code>QRコードスキャナー</code>などのアプリを使ってコピーすると良いでしょう。</p>
+
+<p>URLは、<code>yjotp://totp/@user_id?secret=XXXXXXXXXXXXXXX</code>という形になります。アカウントは<code>yjotp://totp/@user_id</code>まで、キーは<code>X</code>がそれに当たります。</p>
+
+<p>ここで、AndroidのGoogle Authenticatorアプリで言うと、<code>アカウントを設定 -&gt; 提供されたキーを入力</code>にて、以下の形式でアカウントを手動で追加します。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>アカウント名を入力 : yjotp://totp/@user_id
+</span><span class='line'>キーをここに入力 : XXXXXXXXXXXXXXX
+</span><span class='line'>時間ベース
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>Recovery Code</h2>
+
+<p>2段階認証が様々なサービスでデフォルトになってきた感じですが、Recovery Codeを発行しない形のサービスは、2段階認証を使いにくいと思います。例えば、YahooのそれもRecovery Codeを発行してくれなかった気がしています。</p>
+
+<p>例えば、スマホやタブレットが紛失したり、故障した場合に、認証アプリが起動できず、認証コードが使えなくなった場合、Recovery Codeがないと、アカウントにログインできなくなる可能性があります。</p>
+
+<h2>2段階認証の有効性</h2>
+
+<p>確かに、セキュリティ上、2段階認証を有効にしておいたほうが望ましいと思います。</p>
+
+<p>しかし、スマホやタブレットがハッキングされたり、または、Recovery Codeが流出した場合、やはり、2段階認証を突破されてしまいます。</p>
+
+<p>また、鍵を同じ場所に保管している人も多いと思いますが、その場合は、単に認証手順を増やしただけで、効果は薄いかもしれません。</p>
+
+<p>さらに、認証手順を増やしたということは、自分がログインできなくなる可能性も増え、面倒も増えたということです。</p>
+
+<p>したがって、各々、メリットとデメリット、不正ログインされる可能性とログインの手間や頻度などを天秤にかけた上で、2段階認証を有効にするか否かを決めれば良いと思います。2段階認証を有効にしないからといって、ITリテラシーが低いということにはなりませんので。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tips | MBA-HACK2]]></title>
+  <link href="https://mbahack2.syui.cf/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="https://mbahack2.syui.cf/"/>
+  <updated>2017-05-24T00:40:01+00:00</updated>
+  <id>https://mbahack2.syui.cf/</id>
+  <author>
+    <name><![CDATA[syui]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[elm-headley-server]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/09/elm-headley-server"/>
+    <updated>2016-06-09T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/09/elm-headley-server</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left" width="100" height="100">PaaSからデータベースサーバーを使いOAuth認証ページを作成する方法<!--more--><br clear="all"></p>
+
+<h2>必要なもの</h2>
+
+<p>基本的には、以下のリポジトリを使います。</p>
+
+<p><a href="https://github.com/Gizra/elm-hedley">https://github.com/Gizra/elm-hedley</a></p>
+
+<p>GitHub Pagesで認証ページを作成する</p>
+
+<p><a href="https://github.com/Gizra/hedley-server">https://github.com/Gizra/hedley-server</a></p>
+
+<p>DrupalのProfileを自動生成する</p>
+
+<h2>解説</h2>
+
+<h3>Pantheon Drupal</h3>
+
+<p>具体的な手順は、<a href="https://pantheon.io">Pantheon</a>を使い<a href="https://www.drupal.org/">Drupal</a>を起動します。プロファイルの生成については、以下のコマンドを叩きます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/Gizra/hedley-server&quot;</span>&gt;https://github.com/Gizra/hedley-server&lt;/a&gt;
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>hedley-server
+</span><span class='line'><span class="nv">$ </span>cp default.config.sh config.sh
+</span><span class='line'><span class="nv">$ </span>./install
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>ただし、<code>install</code>を実行する前にセキュリティ上の懸念があるため、Drupalは7.43を使います。</p>
+
+<p><a href="https://github.com/Gizra/hedley-server/blob/master/hedley/drupal-org-core.make#L4">https://github.com/Gizra/hedley-server/blob/master/hedley/drupal-org-core.make#L4</a></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>- projects<span class="o">[</span>drupal<span class="o">][</span>version<span class="o">]</span> <span class="o">=</span> <span class="p">&amp;</span>ldquo<span class="p">;</span>7.41<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'>+ projects<span class="o">[</span>drupal<span class="o">][</span>version<span class="o">]</span> <span class="o">=</span> <span class="p">&amp;</span>ldquo<span class="p">;</span>7.43<span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><code>install</code>を実行すると、<code>www/profiles/@hedley</code>ができます。これを削除して、実体のデータに置き換えます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rm www/profiles/hedkey
+</span><span class='line'><span class="nv">$ </span>cp -rf hedley www/profiles
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>次に、<code>.gitignore</code>を編集し、コメントにします。</p>
+
+<p><figure class='code'><figcaption><span>.gitignore </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;Ignore configuration files that may contain sensitive information.&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sites/&lt;em&gt;/settings&lt;/em&gt;.php&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;#&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2&gt;Ignore paths that contain user-generated content.&lt;/h2&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sites/*/files&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;sites/*/private&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>次に、PantheonのGitサーバーにリポジトリをpushします。この際、新しいサイトを作成してその上にpushします。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh-key-gen -t rsa -f ~/.ssh/pantheon
+</span><span class='line'><span class="nv">$ </span>cat ~/.ssh/pantheon.pub <span class="p">|</span> pbcopy
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>SSH鍵は登録しおきます。</p>
+
+<p><figure class='code'><figcaption><span>~/.ssh/config </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Host *.drush.in
+</span><span class='line'>    KexAlgorithms diffie-hellman-group1-sha1
+</span><span class='line'>    IdentityFile ~/.ssh/pantheon
+</span><span class='line'>    Port 2222
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>リポジトリをcloneして、<code>www/</code>をgit化しpushします。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone ssh://codeserver.dev.foo.git gen_rep
+</span><span class='line'><span class="nv">$ </span>cp -rf gen_rep/.git www/
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>www
+</span><span class='line'><span class="nv">$ </span>git add .
+</span><span class='line'><span class="nv">$ </span>git commit -m t
+</span><span class='line'><span class="nv">$ </span>git push -u origin master
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>あとはサイトにアクセスし、Drupalの初期設定を行います。この際、<code>hedley</code>を選択しましょう。</p>
+
+<p>また、DB Nameなどは、Pantheonの<code>Connection Info</code>を見ましょう。</p>
+
+<p>しかし、このままでは、以下のエラーが出ます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>The Drupal installer requires write permissions.
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>これは、Pantheon独特のもので、いかに記述があります。</p>
+
+<p><a href="https://pantheon.io/docs/filesystem-faq/">https://pantheon.io/docs/filesystem-faq/</a></p>
+
+<p>つまり、Git管理からSFTP管理にして、FTPサーバーにアクセス後に、<code>chmod 644 settings.php</code>すればいいという話です。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sftp -o <span class="nv">Port</span><span class="o">=</span><span class="m">2222</span> dev.foo
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /code/site/default
+</span><span class='line'><span class="nv">$ </span>chmod <span class="m">644</span> settings.php
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>Elm</h3>
+
+<p>次にページ自体を作成します。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/Gizra/elm-hedley&quot;</span>&gt;https://github.com/Gizra/elm-hedley&lt;/a&gt;
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>elm-hedley
+</span><span class='line'><span class="nv">$ </span>npm install -g &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;&amp;#109;&amp;#97;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#x65;&amp;#108;&amp;#x6d;&amp;#64;&amp;#x30;&amp;#46;&amp;#x31;&amp;#x36;&amp;#x2e;&amp;#x30;&quot;</span>&gt;<span class="p">&amp;</span><span class="c">#101;&amp;#108;&amp;#109;&amp;#x40;&amp;#x30;&amp;#46;&amp;#x31;&amp;#54;&amp;#x2e;&amp;#x30;&lt;/a&gt;</span>
+</span><span class='line'><span class="nv">$ </span>elm-package install -y
+</span><span class='line'><span class="nv">$ </span>npm i <span class="p">&amp;</span>amp<span class="p">;&amp;</span>amp<span class="p">;</span> bower install
+</span><span class='line'><span class="nv">$ </span>gulp build
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>serve
+</span><span class='line'><span class="nv">$ </span>git checkout -b gh-pages
+</span><span class='line'><span class="nv">$ </span>git add .
+</span><span class='line'><span class="nv">$ </span>git commit -m f
+</span><span class='line'><span class="nv">$ </span>git push -u origin gh-pages
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>ただし、バックエンドには先ほど作成したサーバーを指定します。</p>
+
+<p><figure class='code'><figcaption><span>src/elm/Config.elm </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">module</span> <span class="nx">Config</span> <span class="nx">where</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kr">import</span> <span class="nx">Config</span><span class="p">.</span><span class="nx">Model</span> <span class="nx">as</span> <span class="nx">Config</span> <span class="nx">exposing</span> <span class="p">(</span><span class="nx">BackendConfig</span><span class="p">)</span>
+</span><span class='line'><span class="kr">import</span> <span class="nx">Time</span> <span class="nx">exposing</span> <span class="p">(</span><span class="nx">Time</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">localBackend</span> <span class="o">:</span> <span class="nx">BackendConfig</span>
+</span><span class='line'><span class="nx">localBackend</span> <span class="o">=</span>
+</span><span class='line'>  <span class="p">{</span> <span class="nx">backendUrl</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;https://dev-hedley-elm.pantheonsite.io&quot;</span><span class="o">&gt;</span><span class="nx">https</span><span class="o">:</span><span class="c1">//dev-hedley-elm.pantheonsite.io&lt;/a&gt;&amp;rdquo;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">githubClientId</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">e5661c832ed931ae176c</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">name</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">local</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">localhost</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">prodBackend</span> <span class="o">:</span> <span class="nx">BackendConfig</span>
+</span><span class='line'><span class="nx">prodBackend</span> <span class="o">=</span>
+</span><span class='line'>  <span class="p">{</span> <span class="nx">backendUrl</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;https://live-hedley-elm.pantheonsite.io&quot;</span><span class="o">&gt;</span><span class="nx">https</span><span class="o">:</span><span class="c1">//live-hedley-elm.pantheonsite.io&lt;/a&gt;&amp;rdquo;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">githubClientId</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="mi">4</span><span class="nx">aef0ced83d72bd48d00</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">name</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">gh</span><span class="o">-</span><span class="nx">pages</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">gizra</span><span class="p">.</span><span class="nx">github</span><span class="p">.</span><span class="nx">io</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">backends</span> <span class="o">:</span> <span class="nx">List</span> <span class="nx">BackendConfig</span>
+</span><span class='line'><span class="nx">backends</span> <span class="o">=</span>
+</span><span class='line'>  <span class="p">[</span> <span class="nx">localBackend</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">prodBackend</span>
+</span><span class='line'>  <span class="p">]</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">cacheTtl</span> <span class="o">:</span> <span class="nx">Time</span><span class="p">.</span><span class="nx">Time</span>
+</span><span class='line'><span class="nx">cacheTtl</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">Time</span><span class="p">.</span><span class="nx">second</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Pantheonは通常、<code>Dev -&gt; Test -&gt; Live</code>という手順を踏んで公開されます。それぞれにURLが存在し、リリースは<code>live-${foo}.pantheonsite.io</code>です。ただし、面倒くさい場合は、全部<code>dev</code>でも良いと思います。</p>
+
+<p><code>yo</code>のジェネレーターもあります。こちらはdrupal(server), client(page)どちらも用意されていますね。</p>
+
+<p><a href="http://www.gizra.com/content/yo-hedley/">http://www.gizra.com/content/yo-hedley/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[elm-html-virtual-dom]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/08/elm-html-virtual-dom"/>
+    <updated>2016-06-08T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/08/elm-html-virtual-dom</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left" width="100" height="100">Elmでの仮想DOMを体験する。<!--more--><br clear="all"></p>
+
+<p>サンプルのToDoリストを作成してみます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/evancz/elm-todomvc&quot;</span>&gt;https://github.com/evancz/elm-todomvc&lt;/a&gt;
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>elm-todomvc
+</span><span class='line'><span class="nv">$ </span>npm i elm -g
+</span><span class='line'><span class="nv">$ </span>elm-make Todo.elm <span class="p">&amp;</span>ndash<span class="p">;</span>output elm.js
+</span><span class='line'><span class="nv">$ </span>open index.html
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/elm-html-todomvc.png" alt="" /></p>
+
+<p>速いです。あと、ソースである<code>Todo.elm</code>を見る限りでは割りとシンプルです、400行。そして、出力される<code>elm.js</code>は8000行にも及びます。</p>
+
+<p><code>./elm-stuff</code>を使うことで再利用も簡単になると思われます。</p>
+
+<p>次に、公式に載ってる<a href="https://github.com/Gizra/elm-hedley">elm-hedley</a>を使ってみます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/Gizra/elm-hedley&quot;</span>&gt;https://github.com/Gizra/elm-hedley&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;このバージョンでないと&lt;code&gt;elm package&lt;/code&gt;が動かない&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm i -g &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;&amp;#109;&amp;#x61;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#x3a;&amp;#101;&amp;#108;&amp;#x6d;&amp;#x40;&amp;#x30;&amp;#x2e;&amp;#49;&amp;#x36;&amp;#x2e;&amp;#48;&quot;</span>&gt;<span class="p">&amp;</span><span class="c">#x65;&amp;#108;&amp;#x6d;&amp;#64;&amp;#x30;&amp;#46;&amp;#49;&amp;#54;&amp;#x2e;&amp;#x30;&lt;/a&gt; bower</span>
+</span><span class='line'><span class="nv">$ </span>elm package install -y
+</span><span class='line'><span class="nv">$ </span>npm i <span class="p">&amp;</span>amp<span class="p">;&amp;</span>amp<span class="p">;</span> bower install
+</span><span class='line'><span class="nv">$ </span>gulp build
+</span><span class='line'><span class="nv">$ </span>gulp
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><img src="https://raw.githubusercontent.com/mba-hack/images/master/elm-hedley-sample.png" alt="" /></p>
+
+<p>結構すごい。デモの認証ページは<code>gh-pages:repo</code>で動いています。</p>
+
+<p><a href="https://github.com/Gizra/elm-hedley/tree/gh-pages">https://github.com/Gizra/elm-hedley/tree/gh-pages</a></p>
+
+<p>内容的には、<code>GitHub Client ID</code>, <code>OAuth</code>, <code>Google Analytics</code>, <code>dev-hedley-elm.pantheonsite.io</code>, <code>live-hedley-elm.pantheonsite.io</code>との通信などを確認。</p>
+
+<p>Web APPなので適切なサービスを選んで、その上で設定を変更し起動させればよいと思われます。多分、<a href="https://github.com/Gizra/hedley-server">hedley-server</a>で<a href="https://www.drupal.org/about/drupal-7">Drupal7</a>での構築が必要だと思われます。</p>
+
+<p>ジェネレーターは<a href="https://github.com/Gizra/generator-hedley">generator-hedley</a>です。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>npm i -g generatoa-hedley yo
+</span><span class='line'><span class="nv">$ </span>brew update
+</span><span class='line'><span class="nv">$ </span>brew tap homebrew/homebrew-php
+</span><span class='line'><span class="nv">$ </span>brew tap homebrew/dupes
+</span><span class='line'><span class="nv">$ </span>brew tap homebrew/versions
+</span><span class='line'><span class="nv">$ </span>brew install homebrew/php/composer
+</span><span class='line'><span class="nv">$ </span>composer global require drush/drush
+</span><span class='line'><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="p">&amp;</span>ldquo<span class="p">;</span><span class="nv">$HOME</span>/.composer/vendor/bin:<span class="nv">$PATH</span><span class="p">&amp;</span>rdquo<span class="p">;</span>
+</span><span class='line'><span class="nv">$ </span>mkdir my-hedley-project
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>my-hedley-project
+</span><span class='line'><span class="nv">$ </span>sudo yo hedley
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>client
+</span><span class='line'><span class="nv">$ </span>grunt serve
+</span><span class='line'><span class="nv">$ </span>chrome &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://localhost:9000&quot;</span>&gt;http://localhost:9000&lt;/a&gt;
+</span><span class='line'>or
+</span><span class='line'><span class="nv">$ </span>mkdir my-hedley-project-2
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>my-hedley-project-2
+</span><span class='line'><span class="nv">$ </span>yo hedley <span class="p">&amp;</span>ndash<span class="p">;</span>skip-install <span class="p">&amp;</span>ndash<span class="p">;</span>project-name<span class="o">=</span>skeleton <span class="p">&amp;</span>ndash<span class="p">;</span>github-repo<span class="o">=</span>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/$&quot;</span>&gt;https://github.com/<span class="nv">$&lt;</span>/a&gt;<span class="o">{</span>Foo<span class="o">}</span>/skeleton <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">db</span><span class="o">=</span>skeleton <span class="p">&amp;</span>ndash<span class="p">;</span>db-user<span class="o">=</span>root <span class="p">&amp;</span>ndash<span class="p">;</span>db-pass<span class="o">=</span>root <span class="p">&amp;</span>ndash<span class="p">;</span>drupal-url<span class="o">=</span>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://localhost/skeleton/www&quot;</span>&gt;http://localhost/skeleton/www&lt;/a&gt;
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>client
+</span><span class='line'><span class="nv">$ </span>npm i <span class="p">&amp;</span>amp<span class="p">;&amp;</span>amp<span class="p">;</span> bower install
+</span><span class='line'><span class="nv">$ </span>grunt serve
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>以下の記事が分かりやすいです。</p>
+
+<p><a href="http://www.gizra.com/content/yo-hedley/">http://www.gizra.com/content/yo-hedley/</a></p>
+
+<p>公開する場合は、<code>src/elm/Config.elm</code>でWeb APPのURLを変更してください。その上で、認証ページを<code>gh-pages</code>に上げる場合は、<code>gulp build</code>して<code>./serve</code>以下を<code>push</code>します。</p>
+
+<p>また、<code>GitHub Client ID</code>は<code>App &gt; OAuth</code>から作成、取得します。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[riot-webpack-superstatic]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/07/riot-webpack"/>
+    <updated>2016-06-07T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/07/riot-webpack</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left" width="100" height="100">React, Polymerなどと比較されるRiotを使ってみた。<!--more--><br clear="all"></p>
+
+<p>公式で発表されている数値などによると、<a href="https://github.com/riot">Riot</a>はミニマムで、かつ早いらしいです。</p>
+
+<p><a href="http://riotjs.com/ja/compare/">Riot vs React &amp; Polymer</a></p>
+
+<p>そして、コードの構造が言語ごとに分けて書き出せるため、非常に分かりやすい書き方ができます。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;example-tag&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;findMe&quot;</span><span class="nt">&gt;</span>Do I even Exist?<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>Is this real life?<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>Or just fantasy?<span class="nt">&lt;/p&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;script&gt;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">mount</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="c1">// Contexted jQuery</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">p</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// Contexted Query Selector</span>
+</span><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">})</span>
+</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/example-tag&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><a href="http://riotjs.com/ja/guide/">http://riotjs.com/ja/guide/</a></p>
+
+<p>次に、<code>example</code>を元に実際使ってみます。<code>webpack</code>でビルド, プレビューします。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/riot/examples&quot;</span>&gt;https://github.com/riot/examples&lt;/a&gt; riot-examples
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>riot-examples/webpack
+</span><span class='line'><span class="nv">$ </span>npm i
+</span><span class='line'><span class="nv">$ </span>./dev.sh&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>chromium &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://localhost:3000/&quot;</span>&gt;http://localhost:3000/&lt;/a&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>内容は<code>Random number generator</code>です。ボタンクリックで作成します。</p>
+
+<p><code>riot</code>のビルドはファイル<code>.tag</code>を指定するだけです。<code>webpack.config.js</code>を見てください。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>npm i riot -g
+</span><span class='line'><span class="nv">$ </span>riot app/logs.tag
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>ここでは<code>app/{logs.tag,random.tag}</code>がそれに相当します。webpackでビルド、プレビューされていたため意識する必要はありません。</p>
+
+<p>次に、<a href="https://github.com/firebase/superstatic">superstatic</a>を使ってみます。</p>
+
+<p>こちらのほうがシンプル、ミニマムかもしれません。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>npm i superstatic -g
+</span><span class='line'><span class="nv">$ </span>../router-complex/
+</span><span class='line'><span class="nv">$ </span>superstatic
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>これを通常の手順でビルド、プレビューする場合は以下の通りです。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>riot app-help.tag
+</span><span class='line'><span class="nv">$ </span>riot app-main.tag
+</span><span class='line'><span class="nv">$ </span>riot app-navi.tag
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>index.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-main.tag&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-navi.tag&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-help.tag&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-main.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-navi.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;riot/tag&quot;</span> <span class="na">src=</span><span class="s">&quot;app-help.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>jekyll server
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hugo-search-lunrjs-grunt]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/06/hugo-search-lunrjs"/>
+    <updated>2016-06-06T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/06/hugo-search-lunrjs</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">Hugoの検索システムを構築する方法<!--more--><br clear="all"></p>
+
+<p>大体は下記のコードのとおりです。具体的に<a href="http://gruntjs.com/">Grunt.js</a>と<a href="http://lunrjs.com/">Lunr.js</a>でHugo用に構築します。</p>
+
+<p><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">https://gist.github.com/sebz/efddfc8fdcb6b480f567</a></p>
+
+<p>自分の場合の構築方法です。書いてあるとおりだと<code>config</code>の<code>parmalink</code>を設定しない場合の出力が得られますが、設定している場合は使えません。したがって、急遽無理やりShellScriptで書き直します。これは<code>Gruntfile.js</code>を直せばいいのですが、正直、面倒くさかった&hellip;。</p>
+
+<p><figure class='code'><figcaption><span>bin/lunrjs.sh </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/bin/zsh&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;d<span class="o">=</span><span class="k">${</span><span class="nv">0</span><span class="p">:</span><span class="nv">a</span><span class="p">:</span><span class="nv">h</span><span class="p">:</span><span class="nv">h</span><span class="k">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;backup&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;h<span class="o">=</span><span class="k">${</span><span class="nv">0</span><span class="p">:</span><span class="nv">a</span><span class="p">:</span><span class="nv">h</span><span class="k">}</span>
+</span><span class='line'><span class="k">if</span> cat <span class="nv">$j</span><span class="p">|</span>jq . <span class="p">;</span><span class="k">then</span>
+</span><span class='line'>    cp <span class="nv">$j</span> <span class="nv">$h</span>
+</span><span class='line'><span class="k">fi</span>
+</span><span class='line'><span class="nv">h</span><span class="o">=</span><span class="nv">$h</span>/PagesIndex.json
+</span><span class='line'><span class="nv">j</span><span class="o">=</span><span class="nv">$d</span>/static/bower_components/lunr.js/PagesIndex.json
+</span><span class='line'><span class="nv">t</span><span class="o">=</span>&lt;code&gt;cat <span class="nv">$j</span> <span class="p">|</span>jq <span class="s1">&#39;.[]&#39;</span><span class="p">|</span>sed -e <span class="s1">&#39;s#/post##g&#39;</span>&lt;/code&gt;
+</span><span class='line'><span class="nv">a</span><span class="o">=</span>&lt;code&gt;cat <span class="nv">$j</span> <span class="p">|</span> sed -e <span class="s1">&#39;s#/post##g&#39;</span>&lt;/code&gt;
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$a</span> &gt;! <span class="nv">$j</span>
+</span><span class='line'><span class="nv">t</span><span class="o">=</span>&lt;code&gt;echo <span class="nv">$t</span><span class="p">|</span>jq -r <span class="s1">&#39;.href&#39;</span><span class="p">|</span>cut -d - -f 1-4&lt;/code&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;for <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i<span class="p">&amp;</span>lt<span class="p">;</span><span class="o">=</span>&lt;code&gt;echo <span class="s2">&quot;$t&quot;</span><span class="p">|</span>wc -l&lt;/code&gt;<span class="p">;</span>i++ <span class="o">))</span>
+</span><span class='line'><span class="k">do</span>
+</span><span class='line'>    <span class="nv">f</span><span class="o">=</span>&lt;code&gt;echo <span class="s2">&quot;$t&quot;</span><span class="p">|</span>awk <span class="s2">&quot;NR==$i&quot;</span>&lt;/code&gt;
+</span><span class='line'>    <span class="nv">c</span><span class="o">=</span>&lt;code&gt;echo <span class="nv">$f</span><span class="p">|</span>tr <span class="s1">&#39;-&#39;</span> <span class="s1">&#39;/&#39;</span>&lt;/code&gt;
+</span><span class='line'>    sed -i <span class="p">&amp;</span>ldquo<span class="p">;&amp;</span>rdquo<span class="p">;</span> <span class="p">&amp;</span>ldquo<span class="p">;</span>s#<span class="k">${</span><span class="nv">f</span><span class="k">}</span><span class="c">#${c}#g&amp;rdquo; $j</span>
+</span><span class='line'><span class="k">done</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cat <span class="nv">$j</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;diff <span class="nv">$j</span> <span class="nv">$h</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>とりあえず記事にある<code>Grntfile.js</code>を適時修正し作成し、ビルド後にスクリプトを実行するという手順。</p>
+
+<p>出力ファイルは<code>/bower_components/lunr.js/PagesIndex.json</code>に置くこととします。</p>
+
+<p><figure class='code'><figcaption><span>layouts/partials/widgets/search.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;widget-wrap&quot;</span>&gt;
+</span><span class='line'>&lt;input <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;search&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nv">placeholder</span><span class="o">=</span><span class="s2">&quot;search&quot;</span>&gt;
+</span><span class='line'>&lt;ul <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;results&quot;</span>&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;script <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;https://mbahack2.syui.cf/js/search.js&quot;</span>&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;https://mbahack2.syui.cf/bower_components/lunr.js/lunr.min.js&quot;</span>&gt;&lt;/script&gt;
+</span><span class='line'>&lt;/div&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>js/search.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>var lunrIndex,
+</span><span class='line'>    <span class="nv">$results</span>,
+</span><span class='line'>    pagesIndex<span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// Initialize lunrjs using our generated index file
+</span><span class='line'><span class="k">function</span> initLunr<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    // First retrieve the index file
+</span><span class='line'>    <span class="nv">$.</span>getJSON<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>/bower_components/lunr.js/PagesIndex.json<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>
+</span><span class='line'>        .done<span class="o">(</span><span class="k">function</span><span class="o">(</span>index<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="nv">pagesIndex</span> <span class="o">=</span> index<span class="p">;</span>
+</span><span class='line'>            console.log<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>index:<span class="p">&amp;</span>rdquo<span class="p">;</span>, pagesIndex<span class="o">)</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;        // Set up lunrjs by declaring the fields we use
+</span><span class='line'>        // Also provide their boost level <span class="k">for</span> the ranking
+</span><span class='line'>        <span class="nv">lunrIndex</span> <span class="o">=</span> lunr<span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            this.field<span class="o">(</span><span class="s2">&quot;title&quot;</span>, <span class="o">{</span>
+</span><span class='line'>                boost: 10
+</span><span class='line'>            <span class="o">})</span><span class="p">;</span>
+</span><span class='line'>            this.field<span class="o">(</span><span class="s2">&quot;tags&quot;</span>, <span class="o">{</span>
+</span><span class='line'>                boost: 5
+</span><span class='line'>            <span class="o">})</span><span class="p">;</span>
+</span><span class='line'>            this.field<span class="o">(</span><span class="s2">&quot;content&quot;</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>            // ref is the result item identifier <span class="o">(</span>I chose the page URL<span class="o">)</span>
+</span><span class='line'>            this.ref<span class="o">(</span><span class="s2">&quot;href&quot;</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">})</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        // Feed lunr with each file and <span class="nb">let </span>lunr actually index them
+</span><span class='line'>        pagesIndex.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>page<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            lunrIndex.add<span class="o">(</span>page<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">})</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">})</span>
+</span><span class='line'>    .fail<span class="o">(</span><span class="k">function</span><span class="o">(</span>jqxhr, textStatus, error<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        var <span class="nv">err</span> <span class="o">=</span> textStatus + <span class="s2">&quot;, &quot;</span> + error<span class="p">;</span>
+</span><span class='line'>        console.error<span class="o">(</span><span class="s2">&quot;Error getting Hugo index flie:&quot;</span>, err<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">})</span><span class="p">;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// Nothing crazy here, just hook up a listener on the input field
+</span><span class='line'><span class="k">function</span> initUI<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nv">$results</span> <span class="o">=</span> <span class="k">$(</span><span class="p">&amp;</span>ldquo<span class="p">;</span><span class="c">#results&amp;rdquo;);</span>
+</span><span class='line'>    <span class="k">$(</span><span class="p">&amp;</span>ldquo<span class="p">;</span><span class="c">#search&amp;rdquo;).keyup(function() {</span>
+</span><span class='line'>        <span class="nv">$results</span>.empty<span class="o">(</span><span class="k">)</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;    // Only trigger a search when <span class="m">2</span> chars. at least have been provided
+</span><span class='line'>    var <span class="nv">query</span> <span class="o">=</span> <span class="k">$(</span>this<span class="k">)</span>.val<span class="o">(</span><span class="k">)</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span>query.length <span class="p">&amp;</span>lt<span class="p">;</span> 2<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    var <span class="nv">results</span> <span class="o">=</span> search<span class="o">(</span>query<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    renderResults<span class="o">(</span>results<span class="o">)</span><span class="p">;</span>
+</span><span class='line'><span class="o">})</span><span class="p">;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;/&lt;em&gt;*
+</span><span class='line'> * Trigger a search in lunr and transform the result
+</span><span class='line'> *
+</span><span class='line'> * @param  <span class="o">{</span>String<span class="o">}</span> query
+</span><span class='line'> * @return <span class="o">{</span>Array<span class="o">}</span>  results
+</span><span class='line'> &lt;/em&gt;/
+</span><span class='line'><span class="k">function</span> search<span class="o">(</span>query<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    // Find the item in our index corresponding to the lunr one to have more info
+</span><span class='line'>    // Lunr result:
+</span><span class='line'>    //  <span class="o">{</span>ref: <span class="p">&amp;</span>ldquo<span class="p">;</span>/section/page1<span class="p">&amp;</span>rdquo<span class="p">;</span>, score: 0.2725657778206127<span class="o">}</span>
+</span><span class='line'>    // Our result:
+</span><span class='line'>    //  <span class="o">{</span>title:<span class="p">&amp;</span>ldquo<span class="p">;</span>Page1<span class="p">&amp;</span>rdquo<span class="p">;</span>, href:<span class="p">&amp;</span>ldquo<span class="p">;</span>/section/page1<span class="p">&amp;</span>rdquo<span class="p">;</span>, <span class="p">&amp;</span>hellip<span class="p">;</span><span class="o">}</span>
+</span><span class='line'>    <span class="k">return</span> lunrIndex.search<span class="o">(</span>query<span class="o">)</span>.map<span class="o">(</span><span class="k">function</span><span class="o">(</span>result<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> pagesIndex.filter<span class="o">(</span><span class="k">function</span><span class="o">(</span>page<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                <span class="k">return</span> page.href <span class="o">===</span> result.ref<span class="p">;</span>
+</span><span class='line'>            <span class="o">})[</span>0<span class="o">]</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">})</span><span class="p">;</span>
+</span><span class='line'><span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;/&lt;em&gt;*
+</span><span class='line'> * Display the <span class="m">10</span> first results
+</span><span class='line'> *
+</span><span class='line'> * @param  <span class="o">{</span>Array<span class="o">}</span> results to display
+</span><span class='line'> &lt;/em&gt;/
+</span><span class='line'><span class="k">function</span> renderResults<span class="o">(</span>results<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span>!results.length<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;// Only show the ten first results
+</span><span class='line'>results.slice<span class="o">(</span>0, 10<span class="o">)</span>.forEach<span class="o">(</span><span class="k">function</span><span class="o">(</span>result<span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    var <span class="nv">$result</span> <span class="o">=</span> <span class="k">$(</span><span class="s2">&quot;&amp;lt;li&amp;gt;&quot;</span><span class="k">)</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$result</span>.append<span class="o">(</span><span class="k">$(</span><span class="s2">&quot;&amp;lt;a&amp;gt;&quot;</span>, <span class="o">{</span>
+</span><span class='line'>        href: result.href,
+</span><span class='line'>        text: <span class="s2">&quot;» &quot;</span> + result.title
+</span><span class='line'>    <span class="o">}</span><span class="k">)</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$results</span>.append<span class="o">(</span><span class="nv">$result</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'><span class="o">})</span><span class="p">;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;// Let<span class="p">&amp;</span>rsquo<span class="p">;</span>s get started
+</span><span class='line'>initLunr<span class="o">()</span><span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="k">$(</span>document<span class="k">)</span>.ready<span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    initUI<span class="o">()</span><span class="p">;</span>
+</span><span class='line'><span class="o">})</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>これで検索システムの完成です。Hugo Buildで同時にPagesIndexを作成するようにしておけばOKです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hugo-archives]]></title>
+    <link href="https://mbahack2.syui.cf/blog/2016/06/05/hugo-archives"/>
+    <updated>2016-06-05T00:00:00+00:00</updated>
+    <id>https://mbahack2.syui.cf/blog/2016/06/05/hugo-archives</id>
+    <content type="html"><![CDATA[<p><img src="/images/more.png" alt="phoenix-power" align="left">Hugoにアーカイブページを作成する方法<!--more--><br clear="all"></p>
+
+<p>Hugoに全記事一覧を分かりやすく表示するページを作成します。以下の記事でだいたいわかると思います。</p>
+
+<p><a href="https://parsiya.net/blog/2016-02-14-archive-page-in-hugo/">https://parsiya.net/blog/2016-02-14-archive-page-in-hugo/</a></p>
+
+<p>自分の場合は、以下の様なレイアウト。</p>
+
+<p><figure class='code'><figcaption><span>layouts/archive/single.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{{ partial <span class="ni">&amp;ldquo;</span>head<span class="ni">&amp;rdquo;</span> . }}
+</span><span class='line'>{{ partial <span class="ni">&amp;ldquo;</span>header<span class="ni">&amp;rdquo;</span> . }}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;outer&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;blog-archives&quot;</span> <span class="na">class=</span><span class="s">&quot;category&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          {{ .Content }}
+</span><span class='line'>          {{ range (where .Site.Pages &quot;Type&quot; &quot;post&quot;) }}
+</span><span class='line'>            <span class="nt">&lt;h1&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;time</span> <span class="na">datetime=</span><span class="s">&quot;{{ .Date }}&quot;</span> <span class="na">itemprop=</span><span class="s">&quot;datePublished&quot;</span><span class="nt">&gt;</span>{{ .Date.Format .Site.Params.date_format }}<span class="nt">&lt;/time&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ .Permalink }}&quot;</span> <span class="na">title=</span><span class="s">&quot;{{ .Title }}&quot;</span><span class="nt">&gt;</span>{{ .Title }}<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>          {{ end }}
+</span><span class='line'>        <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>{{ partial <span class="ni">&amp;ldquo;</span>footer<span class="ni">&amp;rdquo;</span> . }}
+</span><span class='line'><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>あまりカスタマイズしていません。</p>
+]]></content>
+  </entry>
+  
+</feed>
